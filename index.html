@@ -3292,7 +3292,7 @@
             });
         }
 
-        // ===== ДОБАВЛЕННАЯ ФУНКЦИЯ ГЛУБОКОГО АНАЛИЗА =====
+        // ===== ДОБАВЛЕННАЯ ФУНКЦИЯ ГЛУБОКОГО АНАЛИЗА (исправленная: категории в виде чипов) =====
         function renderDeepAnalysis() {
             const container = document.getElementById('deepAnalysisBlocks');
             const summary = document.getElementById('deepSummary');
@@ -3304,38 +3304,27 @@
             // --- Блок 1: Анализ базы продаж ---
             const basePercent = stats.base.percent;
             let baseColor, baseZone, baseText;
-            if (basePercent < 30) { baseColor = 'red';
-                baseZone = '🔴 0–30% — критический уровень';
-                baseText = 'Слабая консультация по базе продаж. Требуется полное переобучение основам.'; } else if (basePercent <
-                60) { baseColor = 'orange';
-                baseZone = '🟠 30–60% — низкий уровень';
-                baseText = 'Есть базовые навыки, но требуется донастройка и тренировка ключевых этапов.'; } else if (basePercent <
-                90) { baseColor = 'yellow';
-                baseZone = '🟡 60–90% — средний уровень';
-                baseText = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; } else { baseColor =
-                    'green';
-                baseZone = '🟢 90–100% — высокий уровень';
-                baseText = 'Отличный результат! Продолжайте в том же духе.'; }
+            if (basePercent < 30) { baseColor = 'red'; baseZone = '🔴 0–30% — критический уровень'; baseText = 'Слабая консультация по базе продаж. Требуется полное переобучение основам.'; }
+            else if (basePercent < 60) { baseColor = 'orange'; baseZone = '🟠 30–60% — низкий уровень'; baseText = 'Есть базовые навыки, но требуется донастройка и тренировка ключевых этапов.'; }
+            else if (basePercent < 90) { baseColor = 'yellow'; baseZone = '🟡 60–90% — средний уровень'; baseText = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; }
+            else { baseColor = 'green'; baseZone = '🟢 90–100% — высокий уровень'; baseText = 'Отличный результат! Продолжайте в том же духе.'; }
 
             let html = '';
             html += `<div class="analysis-block ${baseColor}">
-                <div class="block-head"><span>📊 Анализ базы продаж</span><span class="zone">${basePercent}% · ${baseZone}</span></div>
-                <div class="block-desc">${baseText}</div>
-            </div>`;
+                        <div class="block-head"><span>📊 Анализ базы продаж</span><span class="zone">${basePercent}% · ${baseZone}</span></div>
+                        <div class="block-desc">${baseText}</div>
+                    </div>`;
 
-            // --- Блоки групп: ЦИФРА, КБТ, МБТ ---
+            // --- Группы: ЦИФРА, КБТ, МБТ ---
             const groups = [
-                { name: 'ЦИФРА', icon: '💻', keywords: ['ТЕЛЕВИЗОР', 'ПЛАНШЕТ', 'СМАРТФОН', 'МФУ / ПРИНТЕРЫ', 'МОНИТОР',
-                        'НОУТБУК'
-                    ] },
+                { name: 'ЦИФРА', icon: '💻', keywords: ['ТЕЛЕВИЗОР', 'ПЛАНШЕТ', 'СМАРТФОН', 'МФУ / ПРИНТЕРЫ', 'МОНИТОР', 'НОУТБУК'] },
                 { name: 'КБТ', icon: '🏠', keywords: ['СТИРАЛЬНАЯ МАШИНА', 'ХОЛОДИЛЬНИК'] },
                 { name: 'МБТ', icon: '🍳', keywords: ['УТЮГ', 'МИКРОВОЛНОВКА'] }
             ];
 
             const activeGroups = groups.map(group => {
                 const relevant = categorySections.filter(s => group.keywords.includes(s.categoryName));
-                const avg = relevant.length ? Math.round(relevant.reduce((sum, s) => sum + s.percent, 0) / relevant
-                    .length) : null;
+                const avg = relevant.length ? Math.round(relevant.reduce((sum, s) => sum + s.percent, 0) / relevant.length) : null;
                 return { ...group, percent: avg, sections: relevant };
             }).filter(g => g.sections.length > 0);
 
@@ -3349,31 +3338,24 @@
             for (const group of activeGroups) {
                 const p = group.percent;
                 let color, zone, text;
-                if (p < 30) { color = 'red';
-                    zone = '🔴 0–30% — критический уровень';
-                    text = 'Слабая консультация по данной группе. Требуется полное переобучение.'; } else if (p < 60) { color =
-                        'orange';
-                    zone = '🟠 30–60% — низкий уровень';
-                    text = 'Есть базовые знания, но требуется донастройка и тренировка.'; } else if (p < 90) { color =
-                        'yellow';
-                    zone = '🟡 60–90% — средний уровень';
-                    text = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; } else { color =
-                        'green';
-                    zone = '🟢 90–100% — высокий уровень';
-                    text = 'Отличный результат! Продолжайте в том же духе.'; }
+                if (p < 30) { color = 'red'; zone = '🔴 0–30% — критический уровень'; text = 'Слабая консультация по данной группе. Требуется полное переобучение.'; }
+                else if (p < 60) { color = 'orange'; zone = '🟠 30–60% — низкий уровень'; text = 'Есть базовые знания, но требуется донастройка и тренировка.'; }
+                else if (p < 90) { color = 'yellow'; zone = '🟡 60–90% — средний уровень'; text = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; }
+                else { color = 'green'; zone = '🟢 90–100% — высокий уровень'; text = 'Отличный результат! Продолжайте в том же духе.'; }
 
-                // Категории, которые не на 100%
+                // Категории, требующие доработки (процент < 100) – выводим в виде чипов
                 const weak = group.sections.filter(s => s.percent < 100).map(s => s.categoryName);
                 let repeatHtml = '';
                 if (weak.length > 0) {
-                    repeatHtml = `<div style="margin-top:4px; font-weight:600;">Повторить — ${weak.join(', ')}</div>`;
+                    const chips = weak.map(cat => `<span class="role-chip">${cat}</span>`).join(' ');
+                    repeatHtml = `<div style="margin-top:4px; font-weight:600;">Повторить — ${chips}</div>`;
                 }
 
                 html += `<div class="analysis-block ${color}">
-                    <div class="block-head"><span>${group.icon} ${group.name}</span><span class="zone">${p}% · ${zone}</span></div>
-                    <div class="block-desc">${text}</div>
-                    ${repeatHtml}
-                </div>`;
+                            <div class="block-head"><span>${group.icon} ${group.name}</span><span class="zone">${p}% · ${zone}</span></div>
+                            <div class="block-desc">${text}</div>
+                            ${repeatHtml}
+                        </div>`;
             }
 
             container.innerHTML = html;
