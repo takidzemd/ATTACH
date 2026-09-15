@@ -17,11 +17,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,600;14..32,700;14..32,800;14..32,900&display=swap" rel="stylesheet" />
     <style>
         /* ===== БАЗА ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             color-scheme: light;
             --ink: #15171b;
@@ -30,6 +26,7 @@
             --line: #e0e4e9;
             --line-strong: #cbd1d9;
             --surface: #f3f5f7;
+            --surface-soft: #fafbfc;
             --surface-strong: #e9edf1;
             --panel: #ffffff;
             --field: #ffffff;
@@ -44,6 +41,11 @@
             --radius-lg: 26px;
             --radius-md: 16px;
             --radius-sm: 12px;
+
+            --c-success: #38a169;
+            --c-warning: #ed8936;
+            --c-danger:  #e53e3e;
+            --c-info:    #ed8936;
         }
         :root[data-theme="dark"] {
             color-scheme: dark;
@@ -53,6 +55,7 @@
             --line: #2b323c;
             --line-strong: #3b4552;
             --surface: #1a2028;
+            --surface-soft: #171d25;
             --surface-strong: #232a34;
             --panel: #12171e;
             --field: #171d25;
@@ -64,11 +67,13 @@
             --focus-ring: rgba(255, 106, 50, .22);
             --danger-surface: #2b1915;
             --modal-backdrop: rgba(0, 0, 0, .72);
+
+            --c-success: #68d391;
+            --c-warning: #f6ad55;
+            --c-danger:  #fc8181;
+            --c-info:    #f6ad55;
         }
-        html {
-            scroll-behavior: smooth;
-            background: var(--bg);
-        }
+        html { scroll-behavior: smooth; background: var(--bg); }
         body {
             font-family: 'Inter', sans-serif;
             min-height: 100vh;
@@ -79,18 +84,8 @@
             -webkit-font-smoothing: antialiased;
             transition: background-color .28s ease, color .28s ease;
         }
-        .bg-decor,
-        .sign,
-        .film-prop,
-        .glitch::before,
-        .glitch::after {
-            display: none !important;
-        }
-        .container {
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 20px 24px 40px;
-        }
+        .bg-decor, .sign, .film-prop, .glitch::before, .glitch::after { display: none !important; }
+        .container { max-width: 1440px; margin: 0 auto; padding: 20px 24px 40px; }
 
         /* ===== HERO ===== */
         .hero {
@@ -118,17 +113,8 @@
             color: var(--ink);
             margin: 0;
         }
-        .subtitle {
-            font-size: 1rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
-        .badges {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
+        .subtitle { font-size: 1rem; color: var(--muted); margin-top: 2px; }
+        .badges { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
         .theme-control {
             display: flex;
             align-items: center;
@@ -141,11 +127,7 @@
             color: var(--ink-soft);
             box-shadow: var(--shadow-soft);
         }
-        .theme-label {
-            min-width: 58px;
-            font-size: .72rem;
-            font-weight: 700;
-        }
+        .theme-label { min-width: 58px; font-size: .72rem; font-weight: 700; }
         .theme-switch {
             position: relative;
             width: 64px;
@@ -159,13 +141,8 @@
             cursor: pointer;
             transition: background-color .24s ease, border-color .24s ease;
         }
-        .theme-switch:hover {
-            border-color: var(--line-strong);
-        }
-        .theme-switch:focus-visible {
-            outline: 3px solid var(--focus-ring);
-            outline-offset: 2px;
-        }
+        .theme-switch:hover { border-color: var(--line-strong); }
+        .theme-switch:focus-visible { outline: 3px solid var(--focus-ring); outline-offset: 2px; }
         .theme-thumb {
             position: absolute;
             z-index: 1;
@@ -190,23 +167,11 @@
             line-height: 1;
             transition: color .24s ease, opacity .24s ease;
         }
-        .theme-icon.sun {
-            left: 3px;
-            color: #fff;
-        }
-        .theme-icon.moon {
-            right: 3px;
-            color: var(--muted);
-        }
-        :root[data-theme="dark"] .theme-thumb {
-            transform: translateX(32px);
-        }
-        :root[data-theme="dark"] .theme-icon.sun {
-            color: var(--muted);
-        }
-        :root[data-theme="dark"] .theme-icon.moon {
-            color: #fff;
-        }
+        .theme-icon.sun { left: 3px; color: #fff; }
+        .theme-icon.moon { right: 3px; color: var(--muted); }
+        :root[data-theme="dark"] .theme-thumb { transform: translateX(32px); }
+        :root[data-theme="dark"] .theme-icon.sun { color: var(--muted); }
+        :root[data-theme="dark"] .theme-icon.moon { color: #fff; }
 
         /* ===== ВКЛАДКИ ===== */
         .hero-actions {
@@ -217,12 +182,7 @@
             border-top: 1px solid var(--line);
             padding-top: 16px;
         }
-        .hero-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            width: 100%;
-        }
+        .hero-tabs { display: flex; flex-wrap: wrap; gap: 8px; width: 100%; }
         .hero-tab-btn {
             min-height: 40px;
             padding: 0 20px;
@@ -248,57 +208,14 @@
             color: #fff;
         }
 
-        @media (max-width: 720px) {
-            .hero-tab-btn.main-tab {
-                flex: 1 1 40%;
-                min-height: 48px;
-                font-size: 0.9rem;
-                font-weight: 700;
-            }
-            .hero-tab-btn.checklist-tab {
-                flex: 0 1 auto;
-                min-height: 34px;
-                font-size: 0.7rem;
-                font-weight: 600;
-                min-width: 120px;
-                width: auto;
-                padding: 0 16px;
-                margin-top: 4px;
-            }
-            .hero-tabs {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 6px;
-            }
-            .hero-tabs .main-tab:first-child {
-                order: 1;
-            }
-            .hero-tabs .main-tab:nth-child(2) {
-                order: 2;
-            }
-            .hero-tabs .checklist-tab {
-                order: 3;
-                flex: 0 1 auto;
-                width: auto;
-                min-width: 140px;
-            }
-        }
-
         /* ===== LAYOUT ===== */
         .layout {
             display: grid;
             grid-template-columns: 340px 1fr;
             gap: 24px;
         }
-        @media (max-width: 1240px) {
-            .layout {
-                grid-template-columns: 1fr;
-            }
-        }
-        .sidebar .panel+.panel {
-            margin-top: 16px;
-        }
+        @media (max-width: 1240px) { .layout { grid-template-columns: 1fr; } }
+        .sidebar .panel+.panel { margin-top: 16px; }
         .panel {
             background: var(--panel);
             border: 1px solid var(--line);
@@ -315,18 +232,9 @@
             user-select: none;
             transition: background .2s;
         }
-        .panel-header:hover {
-            background: transparent !important;
-        }
-        .panel-header:active {
-            background: transparent !important;
-        }
-        .panel-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--ink);
-            margin: 0;
-        }
+        .panel-header:hover { background: transparent !important; }
+        .panel-header:active { background: transparent !important; }
+        .panel-title { font-size: 1.1rem; font-weight: 700; color: var(--ink); margin: 0; }
         .panel-toggle {
             background: none;
             border: none;
@@ -337,12 +245,8 @@
             transition: transform .25s ease, color .2s;
             line-height: 1;
         }
-        .panel-toggle:hover {
-            color: var(--orange);
-        }
-        .panel-toggle.open {
-            transform: rotate(180deg);
-        }
+        .panel-toggle:hover { color: var(--orange); }
+        .panel-toggle.open { transform: rotate(180deg); }
         .panel-body {
             padding: 0 20px 20px;
             overflow: hidden;
@@ -358,16 +262,9 @@
             padding-top: 4px;
             padding-bottom: 20px;
         }
-        .panel-collapsed .panel-toggle {
-            transform: rotate(-90deg);
-        }
-        .panel-collapsed .panel-header {
-            padding-bottom: 8px;
-        }
-        .controls-grid {
-            display: grid;
-            gap: 14px;
-        }
+        .panel-collapsed .panel-toggle { transform: rotate(-90deg); }
+        .panel-collapsed .panel-header { padding-bottom: 8px; }
+        .controls-grid { display: grid; gap: 14px; }
         .field-label {
             display: block;
             margin-bottom: 4px;
@@ -386,15 +283,8 @@
             padding: 0 14px;
             outline: none;
         }
-        .control::placeholder {
-            color: var(--muted);
-            opacity: .68;
-        }
-        .control:focus {
-            border-color: var(--line) !important;
-            box-shadow: none !important;
-            outline: none !important;
-        }
+        .control::placeholder { color: var(--muted); opacity: .68; }
+        .control:focus { border-color: var(--line) !important; box-shadow: none !important; outline: none !important; }
         select.control {
             appearance: none;
             background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='7'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2369717d' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
@@ -424,26 +314,12 @@
             border-color: var(--line-strong);
             transform: translateY(-1px);
         }
-        .button.primary {
-            background: var(--orange);
-            border-color: var(--orange);
-            color: #fff;
-        }
-        .button.primary:hover {
-            background: var(--orange-dark);
-        }
-        .button.gold {
-            background: var(--surface);
-            border-color: var(--line);
-            color: var(--orange);
-        }
+        .button.primary { background: var(--orange); border-color: var(--orange); color: #fff; }
+        .button.primary:hover { background: var(--orange-dark); }
+        .button.gold { background: var(--surface); border-color: var(--line); color: var(--orange); }
 
         /* ===== РОЛИ ===== */
-        .role-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        .role-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .role-card {
             min-height: 70px;
             padding: 12px 14px;
@@ -454,22 +330,14 @@
             text-align: left;
             transition: all .18s ease;
         }
-        .role-card:hover {
-            background: var(--surface);
-        }
+        .role-card:hover { background: var(--surface); }
         .role-card.active {
             border-color: var(--orange);
             background: var(--surface);
             box-shadow: 0 0 0 2px var(--focus-ring);
         }
-        .role-card-title {
-            font-weight: 700;
-            font-size: 0.95rem;
-        }
-        .role-card-meta {
-            font-size: 0.75rem;
-            color: var(--muted);
-        }
+        .role-card-title { font-weight: 700; font-size: 0.95rem; }
+        .role-card-meta { font-size: 0.75rem; color: var(--muted); }
         .role-summary {
             margin-top: 12px;
             padding: 14px 16px;
@@ -477,19 +345,9 @@
             border-radius: var(--radius-sm);
             background: var(--surface);
         }
-        .role-summary-title {
-            font-weight: 700;
-        }
-        .role-summary-text {
-            color: var(--muted);
-            font-size: 0.82rem;
-        }
-        .role-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 10px;
-        }
+        .role-summary-title { font-weight: 700; }
+        .role-summary-text { color: var(--muted); font-size: 0.82rem; }
+        .role-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .role-chip {
             padding: 4px 10px;
             border: 1px solid var(--line);
@@ -499,54 +357,25 @@
             font-weight: 600;
         }
 
-        /* ===== КОНТРОЛЫ ВКЛАДОК (сайдбар) ===== */
-        .controls-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 12px;
-        }
-        .controls-wrapper .button {
-            flex: 1 1 auto;
-            min-width: 100px;
-        }
-        .bundle-controls,
-        .checklist-controls {
-            display: none;
-        }
-        .layout.show-bundle-controls .bundle-controls {
-            display: flex;
-        }
-        .layout.show-checklist-controls .checklist-controls {
-            display: flex;
-        }
-        .layout.hide-filters .sidebar .panel-filters {
-            display: none;
-        }
-        .layout.hide-sidebar .sidebar {
-            display: none;
-        }
-        .layout.hide-sidebar {
-            grid-template-columns: 1fr;
-        }
+        /* ===== КОНТРОЛЫ ВКЛАДОК ===== */
+        .controls-wrapper { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+        .controls-wrapper .button { flex: 1 1 auto; min-width: 100px; }
+        .bundle-controls, .checklist-controls { display: none; }
+        .layout.show-bundle-controls .bundle-controls { display: flex; }
+        .layout.show-checklist-controls .checklist-controls { display: flex; }
+        .layout.hide-filters .sidebar .panel-filters { display: none; }
+        .layout.hide-sidebar .sidebar { display: none; }
+        .layout.hide-sidebar { grid-template-columns: 1fr; }
 
         /* ===== КАТАЛОГ ===== */
-        .categories,
-        .bundles-container {
-            display: grid;
-            gap: 16px;
-            padding: 16px 20px;
-        }
+        .categories, .bundles-container { display: grid; gap: 16px; padding: 16px 20px; }
         .category {
             border: 1px solid var(--line);
             border-radius: var(--radius-md);
             background: var(--panel);
             overflow: hidden;
         }
-        .category.open {
-            border-color: var(--orange);
-            box-shadow: 0 0 0 2px var(--focus-ring);
-        }
+        .category.open { border-color: var(--orange); box-shadow: 0 0 0 2px var(--focus-ring); }
         .category-head {
             width: 100%;
             border: 0;
@@ -557,11 +386,7 @@
             align-items: center;
             padding: 16px 18px;
         }
-        .category-main {
-            display: flex;
-            gap: 14px;
-            align-items: center;
-        }
+        .category-main { display: flex; gap: 14px; align-items: center; }
         .cat-icon {
             width: 52px;
             height: 52px;
@@ -573,19 +398,9 @@
             font-size: 1.8rem;
             border: 1px solid var(--line);
         }
-        .cat-name {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-        .cat-meta {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 4px;
-        }
-        .bundles-container .cat-meta {
-            justify-content: center;
-        }
+        .cat-name { font-weight: 700; font-size: 1.1rem; }
+        .cat-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+        .bundles-container .cat-meta { justify-content: center; }
         .pill {
             padding: 4px 10px;
             border: 1px solid var(--line);
@@ -595,26 +410,11 @@
             font-weight: 600;
             color: var(--muted);
         }
-        .chevron {
-            font-size: 1.6rem;
-            color: var(--muted);
-            transition: transform .2s;
-        }
-        .category.open .chevron {
-            transform: rotate(180deg);
-        }
-        .category-body {
-            display: none;
-            padding: 0 18px 18px;
-        }
-        .category.open .category-body {
-            display: block;
-        }
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 12px;
-        }
+        .chevron { font-size: 1.6rem; color: var(--muted); transition: transform .2s; }
+        .category.open .chevron { transform: rotate(180deg); }
+        .category-body { display: none; padding: 0 18px 18px; }
+        .category.open .category-body { display: block; }
+        .items-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
         .item {
             background: var(--panel);
             border: 1px solid var(--line);
@@ -629,27 +429,10 @@
             transition: all .16s ease;
             cursor: pointer;
         }
-        .item:hover {
-            border-color: var(--orange);
-            box-shadow: var(--shadow-soft);
-            transform: translateY(-2px);
-        }
-        .item-icon {
-            font-size: 1.8rem;
-            line-height: 1.2;
-            margin-bottom: 2px;
-        }
-        .item-name {
-            font-weight: 600;
-            font-size: 0.85rem;
-            line-height: 1.2;
-            margin-bottom: 2px;
-            color: var(--ink);
-        }
-        .item-code {
-            font-size: 0.6rem;
-            color: var(--muted);
-        }
+        .item:hover { border-color: var(--orange); box-shadow: var(--shadow-soft); transform: translateY(-2px); }
+        .item-icon { font-size: 1.8rem; line-height: 1.2; margin-bottom: 2px; }
+        .item-name { font-weight: 600; font-size: 0.85rem; line-height: 1.2; margin-bottom: 2px; color: var(--ink); }
+        .item-code { font-size: 0.6rem; color: var(--muted); }
         .empty {
             padding: 20px;
             text-align: center;
@@ -680,11 +463,7 @@
             min-width: 0;
             height: 100%;
         }
-        .bundle-accessory .bundle-icon {
-            font-size: 1.8rem;
-            line-height: 1.2;
-            flex: 0 0 1.8rem;
-        }
+        .bundle-accessory .bundle-icon { font-size: 1.8rem; line-height: 1.2; flex: 0 0 1.8rem; }
         .bundle-script {
             padding: 12px 16px;
             background: var(--surface);
@@ -692,16 +471,8 @@
             border-left: 3px solid var(--orange);
             margin-bottom: 12px;
         }
-        .bundle-script p {
-            margin: 0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-        .bundle-script strong {
-            color: var(--orange);
-            display: block;
-            margin-bottom: 4px;
-        }
+        .bundle-script p { margin: 0; font-size: 0.95rem; line-height: 1.5; }
+        .bundle-script strong { color: var(--orange); display: block; margin-bottom: 4px; }
         .bundle-closing {
             padding: 8px 16px;
             background: var(--surface-strong);
@@ -711,42 +482,23 @@
         }
 
         /* ===== ЧЕК-ЛИСТ ===== */
-        .checklist-page {
-            display: grid;
-            gap: 18px;
-        }
+        .checklist-page { display: grid; gap: 18px; }
         .checklist-layout {
             display: grid;
             grid-template-columns: minmax(260px, 320px) 1fr;
             gap: 20px;
             align-items: flex-start;
         }
-        .checklist-sticky {
-            position: sticky;
-            top: 0;
-            align-self: start;
-            z-index: 2;
-        }
+        .checklist-sticky { position: sticky; top: 0; align-self: start; z-index: 2; }
         .checklist-panel {
             padding: 18px;
             border: 1px solid var(--line);
             border-radius: var(--radius-lg);
             background: var(--panel);
         }
-        .checklist-role-title {
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-        .checklist-role-text {
-            color: var(--muted);
-            font-size: 0.85rem;
-        }
-        .checklist-role-chips {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 10px;
-        }
+        .checklist-role-title { font-weight: 800; font-size: 1.2rem; }
+        .checklist-role-text { color: var(--muted); font-size: 0.85rem; }
+        .checklist-role-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
         .checklist-role-chips .role-chip {
             padding: 4px 10px;
             border: 1px solid var(--line);
@@ -755,11 +507,7 @@
             font-size: 0.7rem;
             font-weight: 600;
         }
-        .checklist-progress {
-            margin-top: 16px;
-            display: grid;
-            gap: 12px;
-        }
+        .checklist-progress { margin-top: 16px; display: grid; gap: 12px; }
         .progress-line {
             height: 10px;
             border-radius: 999px;
@@ -774,22 +522,14 @@
             background: var(--orange);
             transition: width .3s;
         }
-        .progress-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
+        .progress-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .progress-card {
             padding: 12px;
             border: 1px solid var(--line);
             border-radius: var(--radius-sm);
             background: var(--surface);
         }
-        .progress-card strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-top: 4px;
-        }
+        .progress-card strong { display: block; font-size: 1.2rem; margin-top: 4px; }
         .analytics-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -808,11 +548,7 @@
             text-transform: uppercase;
             color: var(--muted);
         }
-        .analytics-card .value {
-            display: block;
-            font-size: 1.3rem;
-            font-weight: 700;
-        }
+        .analytics-card .value { display: block; font-size: 1.3rem; font-weight: 700; }
         .analytics-note {
             margin-top: 14px;
             padding: 12px 16px;
@@ -822,11 +558,7 @@
             font-size: 0.85rem;
             line-height: 1.5;
         }
-        .analytics-list {
-            display: grid;
-            gap: 8px;
-            margin-top: 12px;
-        }
+        .analytics-list { display: grid; gap: 8px; margin-top: 12px; }
         .analytics-list-item {
             padding: 10px 14px;
             border: 1px solid var(--line);
@@ -835,15 +567,8 @@
             font-size: 0.8rem;
             line-height: 1.4;
         }
-        .checklist-actions {
-            display: grid;
-            gap: 10px;
-            margin-top: 16px;
-        }
-        .checklist-grid {
-            display: grid;
-            gap: 14px;
-        }
+        .checklist-actions { display: grid; gap: 10px; margin-top: 16px; }
+        .checklist-grid { display: grid; gap: 14px; }
         .checklist-section {
             padding: 16px 18px;
             border: 1px solid var(--line);
@@ -857,15 +582,8 @@
             align-items: center;
             margin-bottom: 10px;
         }
-        .checklist-section-title {
-            font-weight: 700;
-            font-size: 1rem;
-        }
-        .checklist-section-meta {
-            color: var(--muted);
-            font-size: 0.75rem;
-            margin-top: 2px;
-        }
+        .checklist-section-title { font-weight: 700; font-size: 1rem; }
+        .checklist-section-meta { color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
         .checklist-badge {
             min-width: 72px;
             padding: 6px 10px;
@@ -882,13 +600,8 @@
             transition: transform .2s;
             margin-left: 8px;
         }
-        .checklist-section[open] .checklist-chevron {
-            transform: rotate(180deg);
-        }
-        .checklist-items {
-            display: grid;
-            gap: 10px;
-        }
+        .checklist-section[open] .checklist-chevron { transform: rotate(180deg); }
+        .checklist-items { display: grid; gap: 10px; }
         .check-item {
             display: grid;
             grid-template-columns: auto 1fr;
@@ -905,28 +618,12 @@
             accent-color: var(--orange);
             margin-top: 2px;
         }
-        .check-item-title {
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        .check-item-desc {
-            font-size: 0.75rem;
-            color: var(--muted);
-            margin-top: 2px;
-        }
+        .check-item-title { font-weight: 600; line-height: 1.3; }
+        .check-item-desc { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
 
         /* ===== ГЛУБОКИЙ АНАЛИЗ ===== */
-        .deep-analysis {
-            margin-top: 16px;
-            border-top: 1px solid var(--line);
-            padding-top: 16px;
-        }
-        .deep-analysis h3 {
-            font-size: 0.9rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--ink);
-        }
+        .deep-analysis { margin-top: 16px; border-top: 1px solid var(--line); padding-top: 16px; }
+        .deep-analysis h3 { font-size: 0.9rem; font-weight: 700; margin-bottom: 10px; color: var(--ink); }
         .deep-analysis .analysis-block {
             border-radius: var(--radius-sm);
             padding: 10px 14px;
@@ -973,40 +670,16 @@
             text-align: center;
             padding: 8px 0;
         }
-        .deep-analysis .analysis-block.red {
-            border-left-color: #e53e3e;
-            background: #fff5f5;
-        }
-        .deep-analysis .analysis-block.orange {
-            border-left-color: #ed8936;
-            background: #fffaf0;
-        }
-        .deep-analysis .analysis-block.yellow {
-            border-left-color: #d69e2e;
-            background: #fffff0;
-        }
-        .deep-analysis .analysis-block.green {
-            border-left-color: #38a169;
-            background: #f0fff4;
-        }
-        :root[data-theme="dark"] .deep-analysis .analysis-block.red {
-            border-left-color: #fc8181;
-            background: #2d1a1a;
-        }
-        :root[data-theme="dark"] .deep-analysis .analysis-block.orange {
-            border-left-color: #f6ad55;
-            background: #2d2416;
-        }
-        :root[data-theme="dark"] .deep-analysis .analysis-block.yellow {
-            border-left-color: #f6e05e;
-            background: #2d2b16;
-        }
-        :root[data-theme="dark"] .deep-analysis .analysis-block.green {
-            border-left-color: #68d391;
-            background: #1a2e1a;
-        }
+        .deep-analysis .analysis-block.red { border-left-color: #e53e3e; background: #fff5f5; }
+        .deep-analysis .analysis-block.orange { border-left-color: #ed8936; background: #fffaf0; }
+        .deep-analysis .analysis-block.yellow { border-left-color: #d69e2e; background: #fffff0; }
+        .deep-analysis .analysis-block.green { border-left-color: #38a169; background: #f0fff4; }
+        :root[data-theme="dark"] .deep-analysis .analysis-block.red { border-left-color: #fc8181; background: #2d1a1a; }
+        :root[data-theme="dark"] .deep-analysis .analysis-block.orange { border-left-color: #f6ad55; background: #2d2416; }
+        :root[data-theme="dark"] .deep-analysis .analysis-block.yellow { border-left-color: #f6e05e; background: #2d2b16; }
+        :root[data-theme="dark"] .deep-analysis .analysis-block.green { border-left-color: #68d391; background: #1a2e1a; }
 
-        /* ===== МОДАЛКА ===== */
+        /* ===== МОДАЛКИ ===== */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -1020,10 +693,7 @@
             visibility: hidden;
             transition: opacity .3s, visibility .3s;
         }
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
         .modal-window {
             background: var(--panel);
             border-radius: var(--radius-lg);
@@ -1035,11 +705,10 @@
             transform: scale(0.96) translateY(12px);
             transition: transform .3s, opacity .3s;
             opacity: 0;
+            max-height: 90vh;
+            overflow-y: auto;
         }
-        .modal-overlay.active .modal-window {
-            transform: scale(1) translateY(0);
-            opacity: 1;
-        }
+        .modal-overlay.active .modal-window { transform: scale(1) translateY(0); opacity: 1; }
         .modal-close {
             position: absolute;
             top: 16px;
@@ -1049,27 +718,22 @@
             font-size: 28px;
             cursor: pointer;
             color: var(--muted);
+            line-height: 1;
         }
-        .modal-close:hover {
-            color: var(--orange);
-        }
+        .modal-close:hover { color: var(--orange); }
         .modal-title {
             font-weight: 700;
             font-size: 1.4rem;
             margin-bottom: 12px;
             padding-right: 40px;
-            text-align: center;
+            line-height: 1.25;
         }
         .modal-body {
             font-size: 1rem;
             line-height: 1.7;
             color: var(--ink-soft);
-            max-height: 70vh;
-            overflow-y: auto;
         }
-        .modal-body strong {
-            color: var(--orange);
-        }
+        .modal-body strong { color: var(--orange); }
         .modal-body .example {
             background: var(--surface);
             padding: 10px 14px;
@@ -1077,26 +741,20 @@
             margin: 8px 0;
             border-left: 3px solid var(--orange);
         }
-        .hero,
-        .panel,
-        .category,
-        .item,
-        .role-card,
-        .role-summary,
-        .role-chip,
-        .control,
-        .button,
-        .checklist-panel,
-        .checklist-section,
-        .check-item,
-        .progress-card,
-        .analytics-card,
-        .analytics-note,
-        .analytics-list-item,
-        .modal-window,
-        .theme-control {
-            transition: background-color .28s ease, color .28s ease, border-color .28s ease, box-shadow .28s ease, transform .18s ease;
+
+        #calcDetailModal .modal-window { max-width: 640px; padding: 28px 32px; }
+        #calcDetailModal .modal-title { font-size: 1.25rem; margin-bottom: 6px; }
+        #calcDetailModal .modal-title.success { color: var(--c-success); }
+        #calcDetailModal .modal-title.warning { color: var(--c-warning); }
+        #calcDetailModal .modal-title.danger  { color: var(--c-danger); }
+        #calcDetailModal .modal-title.info    { color: var(--c-info); }
+        .calc-modal-hint {
+            font-size: 0.85rem;
+            color: var(--ink-soft);
+            line-height: 1.45;
+            margin-bottom: 16px;
         }
+
         .footer {
             margin-top: 24px;
             padding: 16px 0;
@@ -1106,21 +764,22 @@
             border-top: 1px solid var(--line);
         }
 
-        /* ===== КАЛЬКУЛЯТОР АТТАЧ ===== */
+        /* ===== КАЛЬКУЛЯТОР ===== */
         .calc-container {
             display: grid;
             grid-template-columns: minmax(280px, 380px) 1fr;
             gap: 20px;
             padding: 20px;
+            align-items: stretch;
         }
-        @media (max-width: 900px) {
-            .calc-container { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 900px) { .calc-container { grid-template-columns: 1fr; } }
         .calc-body {
             background: var(--surface);
             border: 1px solid var(--line);
             border-radius: var(--radius-md);
             padding: 16px;
+            display: flex;
+            flex-direction: column;
         }
         .calc-display {
             background: var(--panel);
@@ -1132,9 +791,7 @@
             gap: 8px;
             box-shadow: inset 0 2px 10px rgba(15, 23, 42, .06);
         }
-        :root[data-theme="dark"] .calc-display {
-            box-shadow: inset 0 2px 14px rgba(0, 0, 0, .45);
-        }
+        :root[data-theme="dark"] .calc-display { box-shadow: inset 0 2px 14px rgba(0, 0, 0, .45); }
         .calc-field {
             display: flex;
             justify-content: space-between;
@@ -1205,7 +862,7 @@
             font-size: 1.15rem;
             font-weight: 700;
             cursor: pointer;
-            transition: transform .1s ease, background-color .15s ease;
+            transition: transform .1s ease, background-color .15s ease, color .15s ease;
             font-family: inherit;
             user-select: none;
             display: grid;
@@ -1222,183 +879,195 @@
         }
         .calc-key.calc-ok:hover { background: var(--orange-dark); }
         .calc-key.calc-wide { grid-column: span 2; }
+        .calc-key.calc-backspace svg { width: 22px; height: 22px; display: block; }
+        .calc-key.calc-backspace:hover { background: var(--surface); color: var(--orange-dark); }
 
         .calc-analysis {
-            display: grid;
+            display: flex;
+            flex-direction: column;
             gap: 12px;
-            align-content: start;
+            min-height: 100%;
         }
         .calc-card {
-            padding: 0;
             border: 1px solid var(--line);
+            border-left: 4px solid var(--line);
             border-radius: var(--radius-md);
             background: var(--panel);
-            transition: background-color .28s ease, color .28s ease, border-color .28s ease, box-shadow .2s ease;
             overflow: hidden;
-        }
-        .calc-card.has-details {
+            transition: border-color .2s ease, box-shadow .2s ease, transform .15s ease;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
             cursor: pointer;
         }
-        .calc-card.has-details:hover {
+        .calc-card:hover {
             box-shadow: var(--shadow-soft);
+            transform: translateY(-1px);
         }
+        .calc-card.success { border-left-color: var(--c-success); }
+        .calc-card.warning { border-left-color: var(--c-warning); }
+        .calc-card.danger  { border-left-color: var(--c-danger); }
+        .calc-card.info    { border-left-color: var(--c-info); }
+
         .calc-card-header {
-            padding: 16px 44px 16px 18px;
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            justify-content: space-between;
+            padding: 14px 18px;
+            flex: 1 1 auto;
         }
-        .calc-card.open .calc-card-header {
-            padding-bottom: 12px;
+        .calc-card-text { min-width: 0; flex: 1 1 auto; }
+        .calc-card-title {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: var(--ink);
+            line-height: 1.2;
+            margin: 0;
+        }
+        .calc-card.success .calc-card-title { color: var(--c-success); }
+        .calc-card.warning .calc-card-title { color: var(--c-warning); }
+        .calc-card.danger  .calc-card-title { color: var(--c-danger); }
+        .calc-card.info    .calc-card-title { color: var(--c-info); }
+
+        .calc-card-hint {
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--ink);
+            line-height: 1.45;
+            margin-top: 3px;
+        }
+        .calc-card-right { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+        .calc-card-value {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 62px;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--muted);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+            line-height: 1;
+            transition: color .2s ease, border-color .2s ease;
+        }
+        .calc-card.success .calc-card-value {
+            color: var(--c-success);
+            border-color: color-mix(in srgb, var(--c-success) 35%, var(--line));
+        }
+        .calc-card.warning .calc-card-value {
+            color: var(--c-warning);
+            border-color: color-mix(in srgb, var(--c-warning) 35%, var(--line));
+        }
+        .calc-card.danger .calc-card-value {
+            color: var(--c-danger);
+            border-color: color-mix(in srgb, var(--c-danger) 35%, var(--line));
+        }
+        .calc-card.info .calc-card-value {
+            color: var(--c-info);
+            border-color: color-mix(in srgb, var(--c-info) 35%, var(--line));
         }
         .calc-card-chevron {
-            position: absolute;
-            top: 16px;
-            right: 16px;
             width: 20px;
             height: 20px;
             display: grid;
             place-items: center;
-            font-size: 0.85rem;
+            font-size: 1.1rem;
             color: var(--muted);
             transition: transform .25s ease, color .2s ease;
             pointer-events: none;
         }
-        .calc-card.has-details:hover .calc-card-chevron {
-            color: var(--orange);
-        }
-        .calc-card.open .calc-card-chevron {
-            transform: rotate(180deg);
-            color: var(--orange);
-        }
-        .calc-card-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height .35s ease, padding .3s ease, border-color .3s ease, opacity .25s ease;
-            padding: 0 18px;
-            border-top: 1px dashed transparent;
-            opacity: 0;
-        }
-        .calc-card.open .calc-card-details {
-            max-height: 800px;
-            padding: 12px 18px 16px;
-            border-top-color: var(--line);
-            opacity: 1;
-        }
-        .calc-details-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--muted);
-            margin-bottom: 8px;
-        }
-        .calc-plans {
-            display: grid;
-            gap: 6px;
-        }
-        .calc-plan {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            padding: 8px 12px;
-            border-radius: var(--radius-sm);
-            background: var(--surface);
-            font-size: 0.83rem;
-            line-height: 1.3;
-        }
-        .calc-plan.is-main {
-            background: var(--surface-strong);
-            font-weight: 600;
-        }
-        .calc-plan-label {
-            color: var(--ink-soft);
-            white-space: nowrap;
-        }
-        .calc-plan-value {
-            font-weight: 700;
-            color: var(--ink);
-            text-align: right;
-        }
-        .calc-plan-sub {
-            display: block;
-            font-size: 0.72rem;
-            color: var(--muted);
-            font-weight: 500;
-        }
-        .calc-detail-note {
-            font-size: 0.78rem;
-            color: var(--muted);
-            line-height: 1.5;
-            margin-top: 10px;
-            padding: 8px 12px;
-            border-radius: var(--radius-sm);
-            background: var(--surface);
-        }
-        .calc-card-title {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            color: var(--muted);
-            margin-bottom: 4px;
-        }
-        .calc-card-value {
-            font-size: 1.5rem;
-            font-weight: 800;
-            font-variant-numeric: tabular-nums;
-            color: var(--ink);
-            line-height: 1.15;
-        }
-        .calc-card-hint {
-            font-size: 0.82rem;
-            color: var(--muted);
-            margin-top: 6px;
-            line-height: 1.5;
-        }
-        .calc-card.success { border-left: 4px solid #38a169; }
-        .calc-card.warning { border-left: 4px solid #d69e2e; }
-        .calc-card.danger  { border-left: 4px solid #e53e3e; }
-        .calc-card.info    { border-left: 4px solid var(--orange); }
+        .calc-card:hover .calc-card-chevron { transform: translateX(3px); }
+        .calc-card.success .calc-card-chevron { color: var(--c-success); }
+        .calc-card.warning .calc-card-chevron { color: var(--c-warning); }
+        .calc-card.danger  .calc-card-chevron { color: var(--c-danger); }
+        .calc-card.info    .calc-card-chevron { color: var(--c-info); }
+
         .calc-empty {
             padding: 40px 20px;
             text-align: center;
             color: var(--muted);
             border: 1px dashed var(--line);
             border-radius: var(--radius-md);
-            background: var(--surface);
+            background: var(--surface-soft);
             font-size: 0.9rem;
             line-height: 1.5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
         }
 
-        /* ===== МОБИЛЬНЫЕ ПРАВКИ ===== */
+        #calcDetailModal .calc-details-title {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+        #calcDetailModal .calc-plans { display: grid; gap: 6px; }
+        #calcDetailModal .calc-plan {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            font-size: 0.83rem;
+            line-height: 1.3;
+        }
+        #calcDetailModal .calc-plan.is-main {
+            background: var(--surface);
+            font-weight: 600;
+        }
+        #calcDetailModal .calc-plan-label { color: var(--ink); white-space: nowrap; }
+        #calcDetailModal .calc-plan-value {
+            font-weight: 700;
+            color: var(--ink);
+            text-align: right;
+        }
+        #calcDetailModal .calc-plan-sub {
+            display: block;
+            font-size: 0.72rem;
+            color: var(--muted);
+            font-weight: 500;
+        }
+        #calcDetailModal .calc-detail-note {
+            font-size: 0.8rem;
+            color: var(--ink);
+            line-height: 1.5;
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: var(--radius-sm);
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+        }
+        #calcDetailModal .modal-body.success .calc-plan-value { color: var(--c-success); }
+        #calcDetailModal .modal-body.warning .calc-plan-value { color: var(--c-warning); }
+        #calcDetailModal .modal-body.danger  .calc-plan-value { color: var(--c-danger); }
+        #calcDetailModal .modal-body.info    .calc-plan-value { color: var(--c-info); }
+        #calcDetailModal .modal-body.success .calc-plan-sub,
+        #calcDetailModal .modal-body.warning .calc-plan-sub,
+        #calcDetailModal .modal-body.danger  .calc-plan-sub,
+        #calcDetailModal .modal-body.info    .calc-plan-sub { color: var(--muted); }
+
+        /* ===== МОБИЛЬНАЯ ===== */
         @media (max-width: 720px) {
-            .container {
-                padding: 12px;
-            }
-            .hero {
-                position: relative;
-                top: 0;
-                padding: 16px;
-            }
-            h1 {
-                font-size: 1.8rem;
-            }
-            .subtitle {
-                font-size: 0.9rem;
-            }
-            .hero-top {
-                align-items: flex-start;
-            }
-            .theme-control {
-                width: 100%;
-                justify-content: space-between;
-            }
-            .hero-actions {
-                flex-direction: column;
-            }
-            .layout {
-                grid-template-columns: 1fr;
-            }
+            .container { padding: 12px; }
+            .hero { position: relative; top: 0; padding: 16px; }
+            h1 { font-size: 1.8rem; }
+            .subtitle { font-size: 0.9rem; }
+            .hero-top { align-items: flex-start; }
+            .theme-control { width: 100%; justify-content: space-between; }
+            .hero-actions { flex-direction: column; }
+            .layout { grid-template-columns: 1fr; }
             .sidebar {
                 position: static;
                 transform: none;
@@ -1412,74 +1081,40 @@
                 border-radius: var(--radius-lg);
                 box-shadow: var(--shadow);
             }
-            .items-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            .button-row {
-                grid-template-columns: 1fr;
-            }
-            .checklist-layout {
-                grid-template-columns: 1fr;
-            }
-            .checklist-sticky {
-                position: static;
-            }
-            .modal-window {
-                padding: 24px 20px;
-                max-width: 96%;
-            }
-            .bundle-accessories {
-                grid-template-columns: 1fr 1fr;
-                gap: 8px;
-            }
-            .bundle-accessory {
-                font-size: 0.75rem;
-                padding: 8px 10px;
-                gap: 8px;
-            }
-            .bundle-accessory .bundle-icon {
-                font-size: 1.5rem;
-                flex: 0 0 1.5rem;
-            }
-            .checklist-mobile-controls {
-                display: none !important;
-            }
-            .layout[data-view="checklist"] .sidebar {
-                display: block !important;
-            }
-            .layout[data-view="checklist"] {
-                gap: 16px;
-            }
-            .calc-keypad {
-                gap: 6px;
-            }
-            .calc-key {
-                min-height: 48px;
-                font-size: 1.05rem;
-            }
+            .items-grid { grid-template-columns: 1fr 1fr; }
+            .button-row { grid-template-columns: 1fr; }
+            .checklist-layout { grid-template-columns: 1fr; }
+            .checklist-sticky { position: static; }
+            .modal-window { padding: 24px 20px; max-width: 96%; }
+            .bundle-accessories { grid-template-columns: 1fr 1fr; gap: 8px; }
+            .bundle-accessory { font-size: 0.75rem; padding: 8px 10px; gap: 8px; }
+            .bundle-accessory .bundle-icon { font-size: 1.5rem; flex: 0 0 1.5rem; }
+            .checklist-mobile-controls { display: none !important; }
+            .layout[data-view="checklist"] .sidebar { display: block !important; }
+            .layout[data-view="checklist"] { gap: 16px; }
+            .calc-keypad { gap: 6px; }
+            .calc-key { min-height: 48px; font-size: 1.05rem; }
+            .calc-container { padding: 12px; gap: 14px; }
+            .calc-analysis { gap: 10px; min-height: 0; }
+            .calc-card { flex: 0 0 auto; }
+            .calc-card-header { padding: 12px 14px; gap: 10px; }
+            .calc-card-title { font-size: 0.92rem; line-height: 1.25; }
+            .calc-card-hint { font-size: 0.78rem; line-height: 1.4; margin-top: 4px; }
+            .calc-card-value { min-width: 54px; padding: 5px 10px; font-size: 0.78rem; }
+            .calc-empty { padding: 30px 16px; font-size: 0.85rem; min-height: 0; }
+            #calcDetailModal .modal-window { padding: 22px 18px; max-width: 94%; }
+            #calcDetailModal .modal-title { font-size: 1.1rem; }
+            #calcDetailModal .calc-plan { padding: 8px 10px; font-size: 0.8rem; flex-wrap: wrap; }
+            #calcDetailModal .calc-plan-label { white-space: normal; }
+            #calcDetailModal .calc-plan-value { font-size: 0.9rem; }
+            #calcDetailModal .calc-plan-sub { font-size: 0.68rem; }
+            #calcDetailModal .calc-detail-note { font-size: 0.76rem; line-height: 1.5; padding: 8px 10px; }
         }
-        .checklist-mobile-controls {
-            display: none !important;
-        }
-        .switch,
-        .stats,
-        #chart,
-        #typeChart,
-        #roleModeToggle,
-        .hero-filter-btn,
-        .sidebar-handle {
-            display: none !important;
-        }
-        .app-view {
-            display: none;
-        }
-        .app-view.active {
-            display: block;
-        }
-        .mobile-fab,
-        .mobile-bottom-bar {
-            display: none !important;
-        }
+        .checklist-mobile-controls { display: none !important; }
+        .switch, .stats, #chart, #typeChart, #roleModeToggle, .hero-filter-btn, .sidebar-handle { display: none !important; }
+        .app-view { display: none; }
+        .app-view.active { display: block; }
+        .mobile-fab, .mobile-bottom-bar { display: none !important; }
 
         /* ===== ЗАСТАВКА ===== */
         #launchOverlay {
@@ -1492,21 +1127,6 @@
             background: var(--bg) !important;
             backdrop-filter: none !important;
         }
-        #launchOverlay::before,
-        #launchOverlay::after {
-            display: none !important;
-        }
-        #launchOverlay canvas,
-        #launchOverlay #launchFilmGrain,
-        #launchOverlay #launchNeonFrame,
-        #launchOverlay #launchMarquee,
-        #launchOverlay #launchSideSignLeft,
-        #launchOverlay #launchSideSignRight,
-        #launchOverlay #launchTear,
-        #launchOverlay #launchTearGlow,
-        #launchOverlay .tear-half {
-            display: none !important;
-        }
         #launchIntro {
             background: var(--panel);
             border: 1px solid var(--line);
@@ -1518,11 +1138,7 @@
             text-align: center;
             transition: transform 0.6s ease, opacity 0.6s ease, filter 0.6s ease;
         }
-        #launchIntro.exit {
-            transform: scale(0.96);
-            opacity: 0;
-            filter: blur(6px);
-        }
+        #launchIntro.exit { transform: scale(0.96); opacity: 0; filter: blur(6px); }
         .launch-subtitle {
             font-size: 1rem;
             font-weight: 600;
@@ -1564,56 +1180,16 @@
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(255, 90, 31, 0.4);
         }
-        #launchBtn::before,
-        #launchBtn::after,
-        #launchBtn .btn-spark {
-            display: none !important;
-        }
-        body.launch-opening #launchIntro {
-            animation: launchJitter 0.18s linear 3;
-        }
-        @keyframes launchJitter {
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-            20% {
-                transform: translate(2px, -1px);
-            }
-            40% {
-                transform: translate(-2px, 1px);
-            }
-            60% {
-                transform: translate(1px, 2px);
-            }
-            80% {
-                transform: translate(-1px, -2px);
-            }
-        }
         @media (max-width: 720px) {
-            #launchIntro {
-                padding: 30px 20px;
-                width: 96%;
-            }
-            #launchTitle {
-                font-size: clamp(1.8rem, 8vw, 2.4rem);
-            }
-            .launch-description {
-                font-size: 1.1rem;
-                margin-bottom: 24px;
-            }
-            #launchBtn {
-                padding: 14px 28px;
-                font-size: 1rem;
-                width: 100%;
-                max-width: 280px;
-            }
+            #launchIntro { padding: 30px 20px; width: 96%; }
+            #launchTitle { font-size: clamp(1.8rem, 8vw, 2.4rem); }
+            .launch-description { font-size: 1.1rem; margin-bottom: 24px; }
+            #launchBtn { padding: 14px 28px; font-size: 1rem; width: 100%; max-width: 280px; }
         }
     </style>
 </head>
 <body class="launch-locked">
 
-    <!-- ЗАСТАВКА -->
     <div id="launchOverlay" aria-hidden="false">
         <section id="launchIntro">
             <p class="launch-subtitle">продавай аксессуары легко</p>
@@ -1623,14 +1199,12 @@
         </section>
     </div>
 
-    <!-- ОСНОВНОЕ ПРИЛОЖЕНИЕ -->
     <div id="appShell">
-        <div class="bg-decor" aria-hidden="true"></div>
         <div class="container">
             <section class="hero">
                 <div class="hero-top">
                     <div>
-                        <h1 class="glitch" data-text="Продажа сопутствующего товара">Продажа сопутствующего товара</h1>
+                        <h1>Продажа сопутствующего товара</h1>
                         <p class="subtitle">Изучай, Продавай, Зарабатывай</p>
                     </div>
                     <div class="badges">
@@ -1656,7 +1230,6 @@
 
             <div class="layout" id="appLayout">
                 <aside class="sidebar" id="mobileSheet">
-                    <!-- Панель "Роль сотрудника" -->
                     <section class="panel" data-panel="role">
                         <div class="panel-header" role="button" tabindex="0" aria-expanded="false">
                             <span class="panel-title">Роль сотрудника</span>
@@ -1682,7 +1255,6 @@
                         </div>
                     </section>
 
-                    <!-- Панель "Фильтры каталога" -->
                     <section class="panel panel-filters" data-panel="filters">
                         <div class="panel-header" role="button" tabindex="0" aria-expanded="false">
                             <span class="panel-title">Фильтры каталога</span>
@@ -1726,7 +1298,6 @@
                         <div class="footer">Премиум-каталог</div>
                     </div>
 
-                    <!-- Вкладка "Бандлы" -->
                     <div class="app-view" id="bundlesView">
                         <section class="panel">
                             <div id="bundlesContainer" class="bundles-container"></div>
@@ -1734,7 +1305,6 @@
                         <div class="footer">Готовые комплекты для продажи</div>
                     </div>
 
-                    <!-- Вкладка "Чек-лист сотрудника" -->
                     <div class="app-view" id="checklistView">
                         <section class="panel checklist-page">
                             <div class="panel-body" style="padding-top:8px;">
@@ -1773,13 +1343,11 @@
                                             </div>
                                             <div class="analytics-note analytics-note-simple" id="analyticsSummary">После заполнения здесь появится краткий итог по сотруднику.</div>
                                             <div class="analytics-list analytics-list-simple" id="analyticsDetails"></div>
-
                                             <div class="deep-analysis" id="deepAnalysis">
                                                 <h3>📊 Анализ по группам товаров</h3>
                                                 <div id="deepAnalysisBlocks"></div>
                                                 <div class="analysis-summary" id="deepSummary">Заполните чек-лист, чтобы увидеть анализ.</div>
                                             </div>
-
                                             <div class="checklist-actions checklist-actions-simple">
                                                 <button class="button" id="checklistResetBtn" type="button">Сбросить</button>
                                             </div>
@@ -1792,7 +1360,6 @@
                         <div class="footer">Чек-лист сохраняется автоматически</div>
                     </div>
 
-                    <!-- Вкладка "Калькулятор" -->
                     <div class="app-view" id="calculatorView">
                         <section class="panel">
                             <div class="calc-container">
@@ -1808,14 +1375,20 @@
                                         </div>
                                         <div class="calc-result-display" id="calcResultBox">
                                             <span class="calc-result-label">АТТАЧ</span>
-                                            <span class="calc-result-value" id="calcAttachResult">—</span>
+                                            <span class="calc-result-value" id="calcAttachResult">???</span>
                                         </div>
                                     </div>
                                     <div class="calc-keypad">
                                         <button class="calc-key" type="button" data-key="7">7</button>
                                         <button class="calc-key" type="button" data-key="8">8</button>
                                         <button class="calc-key" type="button" data-key="9">9</button>
-                                        <button class="calc-key calc-fn" type="button" data-key="back">⌫</button>
+                                        <button class="calc-key calc-fn calc-backspace" type="button" data-key="back" aria-label="Удалить последний символ">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                                <path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"/>
+                                                <line x1="18" y1="9" x2="12" y2="15"/>
+                                                <line x1="12" y1="9" x2="18" y2="15"/>
+                                            </svg>
+                                        </button>
                                         <button class="calc-key" type="button" data-key="4">4</button>
                                         <button class="calc-key" type="button" data-key="5">5</button>
                                         <button class="calc-key" type="button" data-key="6">6</button>
@@ -1825,8 +1398,7 @@
                                         <button class="calc-key" type="button" data-key="3">3</button>
                                         <button class="calc-key calc-fn" type="button" data-key="swap">⇅</button>
                                         <button class="calc-key calc-wide" type="button" data-key="0">0</button>
-                                        <button class="calc-key calc-fn" type="button" data-key="reset">Сброс</button>
-                                        <button class="calc-key calc-ok" type="button" data-key="calc">=</button>
+                                        <button class="calc-key calc-ok calc-wide" type="button" data-key="calc">=</button>
                                     </div>
                                 </div>
                                 <div class="calc-analysis" id="calcAnalysis"></div>
@@ -1839,7 +1411,6 @@
         </div>
     </div>
 
-    <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="scriptModal">
         <div class="modal-window">
             <button class="modal-close" id="modalCloseBtn">&times;</button>
@@ -1848,315 +1419,174 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="calcDetailModal">
+        <div class="modal-window">
+            <button class="modal-close" id="calcModalCloseBtn" type="button" aria-label="Закрыть">&times;</button>
+            <h2 class="modal-title" id="calcModalTitle"></h2>
+            <div class="calc-modal-hint" id="calcModalHint"></div>
+            <div class="modal-body" id="calcModalBody"></div>
+        </div>
+    </div>
+
     <script>
         // ================================================================
         // 1. БАЗА ДАННЫХ (accessoriesDB)
         // ================================================================
         const accessoriesDB = {
-            "ТЕЛЕВИЗОР": {
-                icon: "📺",
-                items: [
-                    { code: "AM23621", name: "Антенный переходник" },
-                    { code: "AM24083", name: "Аудиокабель" },
-                    { code: "AM00366", name: "Бытовые батарейки" },
-                    { code: "AM20364", name: "Кабель HDMI" },
-                    { code: "AM14586", name: "Кабель антенный" },
-                    { code: "AM00390", name: "Клавиатура" },
-                    { code: "EM45018", name: "Клавиатура для ТВ" },
-                    { code: "AM01903", name: "Клавиатура+мышь" },
-                    { code: "AM02774", name: "Кронштейн для ТВ" },
-                    { code: "AM00408", name: "Маршрутизатор" },
-                    { code: "EY37864", name: "Маршрутизатор 3G/4G/5G" },
-                    { code: "AM02085", name: "Медиаплеер стационарный" },
-                    { code: "AM00416", name: "Мышь компьютерная" },
-                    { code: "AM00360", name: "Память USB Flash" },
-                    { code: "EM76015", name: "Патч-корд" },
-                    { code: "EM48789", name: "Подсветка для ТВ" },
-                    { code: "AM14592", name: "Пульт ДУ" },
-                    { code: "EM00280", name: "Разветвитель" },
-                    { code: "AM14594", name: "Саундбар (Звуковая панель)" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "AM14693", name: "Сплиттер антенный" },
-                    { code: "AM24464", name: "Стойки для ТВ" },
-                    { code: "AM08210", name: "ТВ антенна" },
-                    { code: "AM24158", name: "Тумбы для ТВ" },
-                    { code: "AM02890", name: "Тонер цифрового телевидения" },
-                    { code: "EM00281", name: "Удлинитель" },
-                    { code: "ID27087", name: "Умная колонка" },
-                    { code: "AM02363", name: "Чехол для пульта ДУ" },
-                    { code: "AM00122", name: "Чистящие средства для компьютера" },
-                    { code: "EM04601", name: "Электронная карта - Подписка/Кошелек" }
-                ]
-            },
-            "МОНИТОР": {
-                icon: "🖥️",
-                items: [
-                    { code: "AM00370", name: "Веб-камера" },
-                    { code: "EM76019", name: "Видео кабель" },
-                    { code: "EY19817", name: "Держатель для проводов" },
-                    { code: "EM10469", name: "Игровой стол" },
-                    { code: "AM00386", name: "Кабель HDMI" },
-                    { code: "AM20364", name: "Кабель HDMI" },
-                    { code: "AM00390", name: "Клавиатура" },
-                    { code: "AM01903", name: "Клавиатура+мышь" },
-                    { code: "AM00393", name: "Колонки" },
-                    { code: "EM02001", name: "Крепление для монитора" },
-                    { code: "AM02774", name: "Кронштейн для ТВ" },
-                    { code: "AM00416", name: "Мышь компьютерная" },
-                    { code: "AM21582", name: "Наушники накладные" },
-                    { code: "EM76005", name: "Переходник" },
-                    { code: "EM85997", name: "Подставка для монитора" },
-                    { code: "EM00280", name: "Разветвитель" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "EM00281", name: "Удлинитель" },
-                    { code: "AM00122", name: "Чистящие средства для компьютера" }
-                ]
-            },
-            "НОУТБУК": {
-                icon: "💻",
-                items: [
-                    { code: "AM31714", name: "Bluetooth мышь" },
-                    { code: "AM01042", name: "USB хаб" },
-                    { code: "AM00417", name: "Аксессуар для клавиатуры" },
-                    { code: "AM02766", name: "Блок питания для ноутбука" },
-                    { code: "AM00370", name: "Веб-камера" },
-                    { code: "AM19367", name: "Вибрационная подставка" },
-                    { code: "EM76019", name: "Видео кабель" },
-                    { code: "AM00371", name: "Видеокарта" },
-                    { code: "AM01217", name: "Внешний HDD" },
-                    { code: "EM44997", name: "Внешний SSD" },
-                    { code: "AM01212", name: "Внешний блок для HDD" },
-                    { code: "AM15318", name: "Внешний оптический привод" },
-                    { code: "AM00377", name: "Джойстик" },
-                    { code: "EM45285", name: "Док-станция" },
-                    { code: "AM20364", name: "Кабель HDMI" },
-                    { code: "EM76016", name: "Кабель USB" },
-                    { code: "AM00390", name: "Клавиатура" },
-                    { code: "AM01903", name: "Клавиатура+мышь" },
-                    { code: "AM00392", name: "Коврик" },
-                    { code: "AM00393", name: "Колонки" },
-                    { code: "AM00408", name: "Маршрутизатор" },
-                    { code: "EY37864", name: "Маршрутизатор 3G/4G/5G" },
-                    { code: "AM00411", name: "Микрофон" },
-                    { code: "AM02277", name: "МФУ Лазерное" },
-                    { code: "AM02278", name: "МФУ Струйное Картриджное" },
-                    { code: "AM00416", name: "Мышь компьютерная" },
-                    { code: "AM21582", name: "Наушники накладные" },
-                    { code: "AM00222", name: "Оперативная память" },
-                    { code: "AM02992", name: "Оперативная память мобильная" },
-                    { code: "AM01881", name: "Охлаждение для ноутбука" },
-                    { code: "AM00360", name: "Память USB Flash" },
-                    { code: "EM76015", name: "Патч-корд" },
-                    { code: "AM13523", name: "Портативный аккумулятор" },
-                    { code: "AM02275", name: "Принтер Лазерный" },
-                    { code: "AM02276", name: "Принтер Струйный Картриджный" },
-                    { code: "AM00431", name: "Программное обеспечение" },
-                    { code: "EM04610", name: "Программное обеспечение - Антивирус" },
-                    { code: "EM04612", name: "Программное обеспечение - Офис и делопроизводство" },
-                    { code: "AM02894", name: "Рюкзак для ноутбука" },
-                    { code: "AM00440", name: "Сетевая карта" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "EM10276", name: "Стереогарнитура (Bluetooth)" },
-                    { code: "AM00446", name: "Сумка для ноутбука" },
-                    { code: "AM19939", name: "Сумка для планшета/ноутбука" }
-                ]
-            },
-            "ПЛАНШЕТ": {
-                icon: "📱",
-                items: [
-                    { code: "AM31714", name: "Bluetooth мышь" },
-                    { code: "AM24097", name: "OTG аксессуар" },
-                    { code: "AM30116", name: "sim адаптер" },
-                    { code: "EM05106", name: "Автомобильное ЗУ для мобильных устройств" },
-                    { code: "AM24710", name: "Адаптер, преобразователь аудиосигнала" },
-                    { code: "EM05107", name: "Беспроводное ЗУ" },
-                    { code: "AM22738", name: "Браслеты для мобильных устройств" },
-                    { code: "AM02391", name: "Держатель для мобильных устройств" },
-                    { code: "EM12148", name: "Док станция для МУ" },
-                    { code: "EM45285", name: "Док-станция" },
-                    { code: "AM23929", name: "Игровые аксессуары" },
-                    { code: "AM14585", name: "Кабель для мобильных устройств" },
-                    { code: "AM00388", name: "Карта памяти (Flash)" },
-                    { code: "AM00390", name: "Клавиатура" },
-                    { code: "AM18782", name: "Клавиатура для планшета" },
-                    { code: "AM22735", name: "Линзы для мобильных устройств" },
-                    { code: "AM01222", name: "Моногарнитура (Bluetooth)" },
-                    { code: "AM00416", name: "Мышь компьютерная" },
-                    { code: "AM21581", name: "Наушники вкладыши" },
-                    { code: "AM01583", name: "Наушники накладные" },
-                    { code: "AM00360", name: "Память USB Flash" },
-                    { code: "EM85763", name: "Переходник питания" },
-                    { code: "EM76007", name: "Переходник для МУ" },
-                    { code: "AM14702", name: "Перчатки для емкостных экранов" },
-                    { code: "AM25713", name: "Пленка защитная" },
-                    { code: "AM13523", name: "Портативный аккумулятор" },
-                    { code: "AM00431", name: "Программное обеспечение" },
-                    { code: "AM11832", name: "Разветвитель автомобильный" },
-                    { code: "AM14589", name: "Сетевое ЗУ для мобильных устройств" },
-                    { code: "AM18806", name: "Сим-карта" },
-                    { code: "AM21949", name: "Средства для чистки оптики" },
-                    { code: "AM25715", name: "Стекло защитное" },
-                    { code: "EM10276", name: "Стереогарнитура (Bluetooth)" },
-                    { code: "AM01223", name: "Стилус" },
-                    { code: "AM22737", name: "Умные часы" },
-                    { code: "AM15915", name: "Чехол для планшета" },
-                    { code: "AM00122", name: "Чистящие средства" },
-                    { code: "EM04599", name: "Электронная карта - Игра" },
-                    { code: "EM04601", name: "Электронная карта - Подписка" }
-                ]
-            },
-            "СМАРТФОН": {
-                icon: "📱",
-                items: [
-                    { code: "AM24097", name: "OTG аксессуар" },
-                    { code: "EM05106", name: "Автомобильное ЗУ" },
-                    { code: "AM14700", name: "Аккумулятор для мобильных устройств" },
-                    { code: "AM17601", name: "Аксессуар для GSM" },
-                    { code: "EM05107", name: "Беспроводное ЗУ" },
-                    { code: "AM22738", name: "Браслеты для мобильных устройств" },
-                    { code: "AM02391", name: "Держатель" },
-                    { code: "AM23929", name: "Игровые аксессуары" },
-                    { code: "AM14585", name: "Кабель для мобильных устройств" },
-                    { code: "AM00388", name: "Карта памяти (Flash)" },
-                    { code: "EM45005", name: "Колонки портативные" },
-                    { code: "EM07536", name: "Компактный фотопринтер" },
-                    { code: "AM22735", name: "Линзы для мобильных устройств" },
-                    { code: "AM01222", name: "Моногарнитура" },
-                    { code: "AM27369", name: "Монопод для селфи" },
-                    { code: "AM21581", name: "Наушники вкладыши" },
-                    { code: "AM21582", name: "Наушники накладные" },
-                    { code: "EY10005", name: "Осветитель для фото и видео" },
-                    { code: "AM23877", name: "Очки AR/VR" },
-                    { code: "AM00360", name: "Память USB Flash" },
-                    { code: "EM85763", name: "Переходник питания" },
-                    { code: "EM76007", name: "Переходник для МУ" },
-                    { code: "AM14702", name: "Перчатки для экранов" },
-                    { code: "AM25713", name: "Пленка защитная" },
-                    { code: "AM19368", name: "Портативные источники света USB" },
-                    { code: "AM13523", name: "Портативный аккумулятор" },
-                    { code: "AM00431", name: "Программное обеспечение" },
-                    { code: "AM11832", name: "Разветвитель авто" },
-                    { code: "AM14589", name: "Сетевое ЗУ" },
-                    { code: "AM18806", name: "Сим-карта" },
-                    { code: "EM10484", name: "Стабилизатор электронный" },
-                    { code: "AM25715", name: "Стекло защитное" },
-                    { code: "EM10276", name: "Стереогарнитура" },
-                    { code: "AM01223", name: "Стилус" },
-                    { code: "AM22737", name: "Умные часы" },
-                    { code: "AM02577", name: "Чехол для GSM" },
-                    { code: "AM19796", name: "Чехол-аккумулятор" },
-                    { code: "AM00122", name: "Чистящие средства" },
-                    { code: "EM04599", name: "Электронная карта - Игра" },
-                    { code: "EM04601", name: "Электронная карта - Подписка" },
-                    { code: "AM26210", name: "Электронная карта оплаты - Esim" }
-                ]
-            },
-            "ХОЛОДИЛЬНИК": {
-                icon: "❄️",
-                items: [
-                    { code: "EM01978", name: "Аксессуары для холодильника" },
-                    { code: "AM29211", name: "Коврик антибактериальный" },
-                    { code: "AM21620", name: "Контейнеры для хранения" },
-                    { code: "AM21538", name: "Поглотитель запаха" },
-                    { code: "AM29195", name: "Подставки антивибрационные" },
-                    { code: "AM30726", name: "Прочие Аксессуары" },
-                    { code: "AM24195", name: "Салфетка" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "EY96663", name: "Средство для очистки" },
-                    { code: "AM00445", name: "Стабилизатор напряжения" },
-                    { code: "EM00281", name: "Удлинитель" },
-                    { code: "AM21644", name: "Фильтр-кувшин" }
-                ]
-            },
-            "СТИРАЛЬНАЯ МАШИНА": {
-                icon: "🧺",
-                items: [
-                    { code: "AM29209", name: "Аквафильтр для КБТ" },
-                    { code: "EY96597", name: "Средство для стирки (основное)" },
-                    { code: "EY96108", name: "Средство для стирки (доп.)" },
-                    { code: "AM23128", name: "Машинка для удаления катышков" },
-                    { code: "AM21539", name: "Мешок-сетка для стирки" },
-                    { code: "AM29201", name: "Набор для стиральных машин" },
-                    { code: "EY73021", name: "Ополаскиватель" },
-                    { code: "AM29191", name: "Очиститель жира и накипи" },
-                    { code: "AM29195", name: "Подставка антивибрационная" },
-                    { code: "AMM30726", name: "Прочие Аксессуары" },
-                    { code: "EM00280", name: "Разветвитель" },
-                    { code: "AM29199", name: "Салфетка против окрашивания" },
-                    { code: "EM76536", name: "Сетевой адаптер" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "EY96663", name: "Средство для очистки" },
-                    { code: "AM23770", name: "Средство для стиральных машин" },
-                    { code: "AMM00445", name: "Стабилизатор напряжения" },
-                    { code: "AM23257", name: "Сушилка для белья" },
-                    { code: "EM00281", name: "Удлинитель" },
-                    { code: "AM21988", name: "Шланг заливной" },
-                    { code: "AMM23699", name: "Шланг сливной" }
-                ]
-            },
-            "МИКРОВОЛНОВКА": {
-                icon: "🍲",
-                items: [
-                    { code: "AM21620", name: "Контейнеры для хранения" },
-                    { code: "AM19786", name: "Кронштейны для МБТ" },
-                    { code: "AM21598", name: "Крышка для СВЧ" },
-                    { code: "EM00280", name: "Разветвитель" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "EY96663", name: "Средство для очистки" },
-                    { code: "AM21622", name: "Стеклянная посуда" },
-                    { code: "AM23774", name: "Тарелка для СВЧ" },
-                    { code: "EM00281", name: "Удлинитель" }
-                ]
-            },
-            "УТЮГ": {
-                icon: "👕",
-                items: [
-                    { code: "AM21599", name: "Аксессуары для ухода за одеждой" },
-                    { code: "AM21608", name: "Вода для глажения" },
-                    { code: "AM21603", name: "Гладильная доска" },
-                    { code: "AM26138", name: "Гладильная доска с розеткой" },
-                    { code: "AM29220", name: "Карандаш для чистки утюга" },
-                    { code: "AM29219", name: "Коврик для утюга" },
-                    { code: "AM23128", name: "Машинка для удаления катышков" },
-                    { code: "AM29218", name: "Набор для ухода за утюгами" },
-                    { code: "EM59417", name: "Пакет вакуумный" },
-                    { code: "AM00441", name: "Сетевой фильтр" },
-                    { code: "AM24107", name: "Сетка для глажения" },
-                    { code: "AM29221", name: "Средство для ухода за утюгом" },
-                    { code: "AM23257", name: "Сушилка для белья" },
-                    { code: "EM00281", name: "Удлинитель" },
-                    { code: "EM00319", name: "Умный дом. Розетка" },
-                    { code: "AM21644", name: "Фильтр-кувшин" }
-                ]
-            },
-            "МФУ / ПРИНТЕРЫ": {
-                icon: "🖨️",
-                items: (() => {
-                    const unique = new Map();
-                    const all = [
-                        { code: "EM76016", name: "Кабель USB" },
-                        { code: "AM00389", name: "Картридж лазерный" },
-                        { code: "AM00369", name: "Офисная бумага" },
-                        { code: "AM00441", name: "Сетевой фильтр" },
-                        { code: "AM00452", name: "Тонер" },
-                        { code: "EM00281", name: "Удлинитель" },
-                        { code: "AM18874", name: "Картридж струйный" },
-                        { code: "EM85763", name: "Переходник питания" },
-                        { code: "AM18942", name: "Фотобумага" },
-                        { code: "AM00120", name: "Чернила" },
-                        { code: "AM01042", name: "USB хаб" },
-                        { code: "AM00542", name: "Тонер (альтернативный)" },
-                        { code: "AM100120", name: "Чернила (СНПЧ)" }
-                    ];
-                    for (let item of all)
-                        if (!unique.has(item.code)) unique.set(item.code, item);
-                    return Array.from(unique.values());
-                })()
-            }
+            "ТЕЛЕВИЗОР": { icon: "📺", items: [
+                { code: "AM23621", name: "Антенный переходник" }, { code: "AM24083", name: "Аудиокабель" },
+                { code: "AM00366", name: "Бытовые батарейки" }, { code: "AM20364", name: "Кабель HDMI" },
+                { code: "AM14586", name: "Кабель антенный" }, { code: "AM00390", name: "Клавиатура" },
+                { code: "EM45018", name: "Клавиатура для ТВ" }, { code: "AM01903", name: "Клавиатура+мышь" },
+                { code: "AM02774", name: "Кронштейн для ТВ" }, { code: "AM00408", name: "Маршрутизатор" },
+                { code: "EY37864", name: "Маршрутизатор 3G/4G/5G" }, { code: "AM02085", name: "Медиаплеер стационарный" },
+                { code: "AM00416", name: "Мышь компьютерная" }, { code: "AM00360", name: "Память USB Flash" },
+                { code: "EM76015", name: "Патч-корд" }, { code: "EM48789", name: "Подсветка для ТВ" },
+                { code: "AM14592", name: "Пульт ДУ" }, { code: "EM00280", name: "Разветвитель" },
+                { code: "AM14594", name: "Саундбар (Звуковая панель)" }, { code: "AM00441", name: "Сетевой фильтр" },
+                { code: "AM14693", name: "Сплиттер антенный" }, { code: "AM24464", name: "Стойки для ТВ" },
+                { code: "AM08210", name: "ТВ антенна" }, { code: "AM24158", name: "Тумбы для ТВ" },
+                { code: "AM02890", name: "Тонер цифрового телевидения" }, { code: "EM00281", name: "Удлинитель" },
+                { code: "ID27087", name: "Умная колонка" }, { code: "AM02363", name: "Чехол для пульта ДУ" },
+                { code: "AM00122", name: "Чистящие средства для компьютера" }, { code: "EM04601", name: "Электронная карта - Подписка/Кошелек" }
+            ]},
+            "МОНИТОР": { icon: "🖥️", items: [
+                { code: "AM00370", name: "Веб-камера" }, { code: "EM76019", name: "Видео кабель" },
+                { code: "EY19817", name: "Держатель для проводов" }, { code: "EM10469", name: "Игровой стол" },
+                { code: "AM00386", name: "Кабель HDMI" }, { code: "AM20364", name: "Кабель HDMI" },
+                { code: "AM00390", name: "Клавиатура" }, { code: "AM01903", name: "Клавиатура+мышь" },
+                { code: "AM00393", name: "Колонки" }, { code: "EM02001", name: "Крепление для монитора" },
+                { code: "AM02774", name: "Кронштейн для ТВ" }, { code: "AM00416", name: "Мышь компьютерная" },
+                { code: "AM21582", name: "Наушники накладные" }, { code: "EM76005", name: "Переходник" },
+                { code: "EM85997", name: "Подставка для монитора" }, { code: "EM00280", name: "Разветвитель" },
+                { code: "AM00441", name: "Сетевой фильтр" }, { code: "EM00281", name: "Удлинитель" },
+                { code: "AM00122", name: "Чистящие средства для компьютера" }
+            ]},
+            "НОУТБУК": { icon: "💻", items: [
+                { code: "AM31714", name: "Bluetooth мышь" }, { code: "AM01042", name: "USB хаб" },
+                { code: "AM00417", name: "Аксессуар для клавиатуры" }, { code: "AM02766", name: "Блок питания для ноутбука" },
+                { code: "AM00370", name: "Веб-камера" }, { code: "AM19367", name: "Вибрационная подставка" },
+                { code: "EM76019", name: "Видео кабель" }, { code: "AM00371", name: "Видеокарта" },
+                { code: "AM01217", name: "Внешний HDD" }, { code: "EM44997", name: "Внешний SSD" },
+                { code: "AM01212", name: "Внешний блок для HDD" }, { code: "AM15318", name: "Внешний оптический привод" },
+                { code: "AM00377", name: "Джойстик" }, { code: "EM45285", name: "Док-станция" },
+                { code: "AM20364", name: "Кабель HDMI" }, { code: "EM76016", name: "Кабель USB" },
+                { code: "AM00390", name: "Клавиатура" }, { code: "AM01903", name: "Клавиатура+мышь" },
+                { code: "AM00392", name: "Коврик" }, { code: "AM00393", name: "Колонки" },
+                { code: "AM00408", name: "Маршрутизатор" }, { code: "EY37864", name: "Маршрутизатор 3G/4G/5G" },
+                { code: "AM00411", name: "Микрофон" }, { code: "AM02277", name: "МФУ Лазерное" },
+                { code: "AM02278", name: "МФУ Струйное Картриджное" }, { code: "AM00416", name: "Мышь компьютерная" },
+                { code: "AM21582", name: "Наушники накладные" }, { code: "AM00222", name: "Оперативная память" },
+                { code: "AM02992", name: "Оперативная память мобильная" }, { code: "AM01881", name: "Охлаждение для ноутбука" },
+                { code: "AM00360", name: "Память USB Flash" }, { code: "EM76015", name: "Патч-корд" },
+                { code: "AM13523", name: "Портативный аккумулятор" }, { code: "AM02275", name: "Принтер Лазерный" },
+                { code: "AM02276", name: "Принтер Струйный Картриджный" }, { code: "AM00431", name: "Программное обеспечение" },
+                { code: "EM04610", name: "Программное обеспечение - Антивирус" }, { code: "EM04612", name: "Программное обеспечение - Офис и делопроизводство" },
+                { code: "AM02894", name: "Рюкзак для ноутбука" }, { code: "AM00440", name: "Сетевая карта" },
+                { code: "AM00441", name: "Сетевой фильтр" }, { code: "EM10276", name: "Стереогарнитура (Bluetooth)" },
+                { code: "AM00446", name: "Сумка для ноутбука" }, { code: "AM19939", name: "Сумка для планшета/ноутбука" }
+            ]},
+            "ПЛАНШЕТ": { icon: "📱", items: [
+                { code: "AM31714", name: "Bluetooth мышь" }, { code: "AM24097", name: "OTG аксессуар" },
+                { code: "AM30116", name: "sim адаптер" }, { code: "EM05106", name: "Автомобильное ЗУ для мобильных устройств" },
+                { code: "AM24710", name: "Адаптер, преобразователь аудиосигнала" }, { code: "EM05107", name: "Беспроводное ЗУ" },
+                { code: "AM22738", name: "Браслеты для мобильных устройств" }, { code: "AM02391", name: "Держатель для мобильных устройств" },
+                { code: "EM12148", name: "Док станция для МУ" }, { code: "EM45285", name: "Док-станция" },
+                { code: "AM23929", name: "Игровые аксессуары" }, { code: "AM14585", name: "Кабель для мобильных устройств" },
+                { code: "AM00388", name: "Карта памяти (Flash)" }, { code: "AM00390", name: "Клавиатура" },
+                { code: "AM18782", name: "Клавиатура для планшета" }, { code: "AM22735", name: "Линзы для мобильных устройств" },
+                { code: "AM01222", name: "Моногарнитура (Bluetooth)" }, { code: "AM00416", name: "Мышь компьютерная" },
+                { code: "AM21581", name: "Наушники вкладыши" }, { code: "AM01583", name: "Наушники накладные" },
+                { code: "AM00360", name: "Память USB Flash" }, { code: "EM85763", name: "Переходник питания" },
+                { code: "EM76007", name: "Переходник для МУ" }, { code: "AM14702", name: "Перчатки для емкостных экранов" },
+                { code: "AM25713", name: "Пленка защитная" }, { code: "AM13523", name: "Портативный аккумулятор" },
+                { code: "AM00431", name: "Программное обеспечение" }, { code: "AM11832", name: "Разветвитель автомобильный" },
+                { code: "AM14589", name: "Сетевое ЗУ для мобильных устройств" }, { code: "AM18806", name: "Сим-карта" },
+                { code: "AM21949", name: "Средства для чистки оптики" }, { code: "AM25715", name: "Стекло защитное" },
+                { code: "EM10276", name: "Стереогарнитура (Bluetooth)" }, { code: "AM01223", name: "Стилус" },
+                { code: "AM22737", name: "Умные часы" }, { code: "AM15915", name: "Чехол для планшета" },
+                { code: "AM00122", name: "Чистящие средства" }, { code: "EM04599", name: "Электронная карта - Игра" },
+                { code: "EM04601", name: "Электронная карта - Подписка" }
+            ]},
+            "СМАРТФОН": { icon: "📱", items: [
+                { code: "AM24097", name: "OTG аксессуар" }, { code: "EM05106", name: "Автомобильное ЗУ" },
+                { code: "AM14700", name: "Аккумулятор для мобильных устройств" }, { code: "AM17601", name: "Аксессуар для GSM" },
+                { code: "EM05107", name: "Беспроводное ЗУ" }, { code: "AM22738", name: "Браслеты для мобильных устройств" },
+                { code: "AM02391", name: "Держатель" }, { code: "AM23929", name: "Игровые аксессуары" },
+                { code: "AM14585", name: "Кабель для мобильных устройств" }, { code: "AM00388", name: "Карта памяти (Flash)" },
+                { code: "EM45005", name: "Колонки портативные" }, { code: "EM07536", name: "Компактный фотопринтер" },
+                { code: "AM22735", name: "Линзы для мобильных устройств" }, { code: "AM01222", name: "Моногарнитура" },
+                { code: "AM27369", name: "Монопод для селфи" }, { code: "AM21581", name: "Наушники вкладыши" },
+                { code: "AM21582", name: "Наушники накладные" }, { code: "EY10005", name: "Осветитель для фото и видео" },
+                { code: "AM23877", name: "Очки AR/VR" }, { code: "AM00360", name: "Память USB Flash" },
+                { code: "EM85763", name: "Переходник питания" }, { code: "EM76007", name: "Переходник для МУ" },
+                { code: "AM14702", name: "Перчатки для экранов" }, { code: "AM25713", name: "Пленка защитная" },
+                { code: "AM19368", name: "Портативные источники света USB" }, { code: "AM13523", name: "Портативный аккумулятор" },
+                { code: "AM00431", name: "Программное обеспечение" }, { code: "AM11832", name: "Разветвитель авто" },
+                { code: "AM14589", name: "Сетевое ЗУ" }, { code: "AM18806", name: "Сим-карта" },
+                { code: "EM10484", name: "Стабилизатор электронный" }, { code: "AM25715", name: "Стекло защитное" },
+                { code: "EM10276", name: "Стереогарнитура" }, { code: "AM01223", name: "Стилус" },
+                { code: "AM22737", name: "Умные часы" }, { code: "AM02577", name: "Чехол для GSM" },
+                { code: "AM19796", name: "Чехол-аккумулятор" }, { code: "AM00122", name: "Чистящие средства" },
+                { code: "EM04599", name: "Электронная карта - Игра" }, { code: "EM04601", name: "Электронная карта - Подписка" },
+                { code: "AM26210", name: "Электронная карта оплаты - Esim" }
+            ]},
+            "ХОЛОДИЛЬНИК": { icon: "❄️", items: [
+                { code: "EM01978", name: "Аксессуары для холодильника" }, { code: "AM29211", name: "Коврик антибактериальный" },
+                { code: "AM21620", name: "Контейнеры для хранения" }, { code: "AM21538", name: "Поглотитель запаха" },
+                { code: "AM29195", name: "Подставки антивибрационные" }, { code: "AM30726", name: "Прочие Аксессуары" },
+                { code: "AM24195", name: "Салфетка" }, { code: "AM00441", name: "Сетевой фильтр" },
+                { code: "EY96663", name: "Средство для очистки" }, { code: "AM00445", name: "Стабилизатор напряжения" },
+                { code: "EM00281", name: "Удлинитель" }, { code: "AM21644", name: "Фильтр-кувшин" }
+            ]},
+            "СТИРАЛЬНАЯ МАШИНА": { icon: "🧺", items: [
+                { code: "AM29209", name: "Аквафильтр для КБТ" }, { code: "EY96597", name: "Средство для стирки (основное)" },
+                { code: "EY96108", name: "Средство для стирки (доп.)" }, { code: "AM23128", name: "Машинка для удаления катышков" },
+                { code: "AM21539", name: "Мешок-сетка для стирки" }, { code: "AM29201", name: "Набор для стиральных машин" },
+                { code: "EY73021", name: "Ополаскиватель" }, { code: "AM29191", name: "Очиститель жира и накипи" },
+                { code: "AM29195", name: "Подставка антивибрационная" }, { code: "AMM30726", name: "Прочие Аксессуары" },
+                { code: "EM00280", name: "Разветвитель" }, { code: "AM29199", name: "Салфетка против окрашивания" },
+                { code: "EM76536", name: "Сетевой адаптер" }, { code: "AM00441", name: "Сетевой фильтр" },
+                { code: "EY96663", name: "Средство для очистки" }, { code: "AM23770", name: "Средство для стиральных машин" },
+                { code: "AMM00445", name: "Стабилизатор напряжения" }, { code: "AM23257", name: "Сушилка для белья" },
+                { code: "EM00281", name: "Удлинитель" }, { code: "AM21988", name: "Шланг заливной" },
+                { code: "AMM23699", name: "Шланг сливной" }
+            ]},
+            "МИКРОВОЛНОВКА": { icon: "🍲", items: [
+                { code: "AM21620", name: "Контейнеры для хранения" }, { code: "AM19786", name: "Кронштейны для МБТ" },
+                { code: "AM21598", name: "Крышка для СВЧ" }, { code: "EM00280", name: "Разветвитель" },
+                { code: "AM00441", name: "Сетевой фильтр" }, { code: "EY96663", name: "Средство для очистки" },
+                { code: "AM21622", name: "Стеклянная посуда" }, { code: "AM23774", name: "Тарелка для СВЧ" },
+                { code: "EM00281", name: "Удлинитель" }
+            ]},
+            "УТЮГ": { icon: "👕", items: [
+                { code: "AM21599", name: "Аксессуары для ухода за одеждой" }, { code: "AM21608", name: "Вода для глажения" },
+                { code: "AM21603", name: "Гладильная доска" }, { code: "AM26138", name: "Гладильная доска с розеткой" },
+                { code: "AM29220", name: "Карандаш для чистки утюга" }, { code: "AM29219", name: "Коврик для утюга" },
+                { code: "AM23128", name: "Машинка для удаления катышков" }, { code: "AM29218", name: "Набор для ухода за утюгами" },
+                { code: "EM59417", name: "Пакет вакуумный" }, { code: "AM00441", name: "Сетевой фильтр" },
+                { code: "AM24107", name: "Сетка для глажения" }, { code: "AM29221", name: "Средство для ухода за утюгом" },
+                { code: "AM23257", name: "Сушилка для белья" }, { code: "EM00281", name: "Удлинитель" },
+                { code: "EM00319", name: "Умный дом. Розетка" }, { code: "AM21644", name: "Фильтр-кувшин" }
+            ]},
+            "МФУ / ПРИНТЕРЫ": { icon: "🖨️", items: (() => {
+                const unique = new Map();
+                const all = [
+                    { code: "EM76016", name: "Кабель USB" }, { code: "AM00389", name: "Картридж лазерный" },
+                    { code: "AM00369", name: "Офисная бумага" }, { code: "AM00441", name: "Сетевой фильтр" },
+                    { code: "AM00452", name: "Тонер" }, { code: "EM00281", name: "Удлинитель" },
+                    { code: "AM18874", name: "Картридж струйный" }, { code: "EM85763", name: "Переходник питания" },
+                    { code: "AM18942", name: "Фотобумага" }, { code: "AM00120", name: "Чернила" },
+                    { code: "AM01042", name: "USB хаб" }, { code: "AM00542", name: "Тонер (альтернативный)" },
+                    { code: "AM100120", name: "Чернила (СНПЧ)" }
+                ];
+                for (let item of all) if (!unique.has(item.code)) unique.set(item.code, item);
+                return Array.from(unique.values());
+            })()}
         };
 
         // ================================================================
-        // 2. ДАННЫЕ ДЛЯ БАНДЛОВ (bundlesData)
+        // 2. ДАННЫЕ ДЛЯ БАНДЛОВ
         // ================================================================
         const bundlesData = {
             "ТЕЛЕВИЗОР": {
@@ -2212,7 +1642,7 @@
         };
 
         // ================================================================
-        // 3. СЛОВАРЬ СКРИПТОВ (scriptsData)
+        // 3. ПОЛНЫЙ СЛОВАРЬ СКРИПТОВ (scriptsData)
         // ================================================================
         const scriptsData = {
             "ТЕЛЕВИЗОР": {
@@ -2400,7 +1830,7 @@
                 "Коврик антибактериальный": { description: "Защищает полку от загрязнений, облегчает уборку и помогает аккуратнее размещать продукты.", phrase: "Чтобы полки меньше пачкались и их было проще очищать, можно использовать специальные коврики." },
                 "Контейнеры для хранения": { description: "Изолируют запахи, организуют продукты и помогают эффективнее использовать объём камеры.", phrase: "Какие продукты храните чаще? Подберём контейнеры, которые удобно разместятся на полках." },
                 "Подставки антивибрационные": { description: "Помогают уменьшить передачу вибраций и защищают напольное покрытие. Не заменяют правильную регулировку ножек.", phrase: "Если пол чувствительный или техника немного вибрирует, после правильной установки можно добавить подставки." },
-                "Поглотитель запаха": { description: "Устраняет неприятные запахи, абсорбирует излишнюю влагу и вредные примеси из воздуха. Подходит для холодильников, шкафов, автомобилей, ванных комнат.", phrase: "Чтобы в холодильнике всегда было свежо, а продукты не впитывали посторонние запахи, можно поставить поглотитель." },
+                "Поглотитель запаха": { description: "Устраняет неприятные запахи, абсорбирует излишнюю влагу и вредные примеси из воздуха.", phrase: "Чтобы в холодильнике всегда было свежо, а продукты не впитывали посторонние запахи, можно поставить поглотитель." },
                 "Прочие Аксессуары": { description: "Категория слишком широкая, поэтому сначала необходимо выявить конкретную потребность.", phrase: "Нужно организовать хранение, защитить полки или заменить какой-то элемент?" },
                 "Салфетка": { description: "Мягкая микрофибра подходит для регулярной очистки внутренних и внешних поверхностей без царапин.", phrase: "Для ухода за глянцевыми и стеклянными поверхностями лучше использовать отдельную мягкую салфетку." },
                 "Сетевой фильтр": { description: "Для холодильника требуется модель, рассчитанная на пусковую нагрузку компрессора. Обычный компьютерный фильтр может не подойти.", phrase: "Если розетка или сеть вызывают вопросы, сначала подберём решение, рассчитанное именно на нагрузку холодильника." },
@@ -2662,7 +2092,7 @@
         }
 
         // ================================================================
-        // 5. ЧЕК-ЛИСТ И РОЛИ
+        // 5. ЧЕК-ЛИСТ
         // ================================================================
         const SALES_BASE_ITEMS = [
             ['contact', 'Выявляет потребность', 'Понимает задачу клиента до предложения.'],
@@ -2672,7 +2102,6 @@
             ['objections', 'Работает с возражением', 'Уверенно отвечает на сомнения по аксессуарам.'],
             ['close', 'Закрывает продажу', 'Подводит клиента к понятному финальному выбору.']
         ];
-
         const ROLE_CHECKLIST_CATEGORIES = {
             seller: ['ТЕЛЕВИЗОР', 'МОНИТОР', 'НОУТБУК', 'ПЛАНШЕТ', 'СМАРТФОН', 'ХОЛОДИЛЬНИК', 'СТИРАЛЬНАЯ МАШИНА', 'МИКРОВОЛНОВКА', 'УТЮГ', 'МФУ / ПРИНТЕРЫ'],
             kbt: ['ХОЛОДИЛЬНИК', 'СТИРАЛЬНАЯ МАШИНА'],
@@ -2681,7 +2110,6 @@
             tv: ['ТЕЛЕВИЗОР', 'МОНИТОР'],
             kbt_mbt: ['ХОЛОДИЛЬНИК', 'СТИРАЛЬНАЯ МАШИНА', 'УТЮГ', 'МИКРОВОЛНОВКА']
         };
-
         const ROLE_CONFIG = {
             seller: { title: 'Продавец', description: 'Универсальный доступ ко всем категориям каталога', categories: Object.keys(accessoriesDB) },
             kbt: { title: 'Промоутер КБТ', description: 'Холодильники и стиральные машины', categories: ['ХОЛОДИЛЬНИК', 'СТИРАЛЬНАЯ МАШИНА'] },
@@ -2690,11 +2118,9 @@
             tv: { title: 'Промоутер ТВ', description: 'Телевизоры и мониторы', categories: ['ТЕЛЕВИЗОР', 'МОНИТОР'] },
             kbt_mbt: { title: 'Промоутер КБТ/МБТ', description: 'Холодильники, стиральные машины, утюги, микроволновки', categories: ['ХОЛОДИЛЬНИК', 'СТИРАЛЬНАЯ МАШИНА', 'УТЮГ', 'МИКРОВОЛНОВКА'] }
         };
-
         function toIdPart(value) {
             return String(value || '').toLowerCase().replace(/[^a-zа-яё0-9]+/gi, '_').replace(/^_+|_+$/g, '');
         }
-
         function uniqueCategoryItems(categoryName, limit = 10) {
             const category = accessoriesDB[categoryName];
             if (!category || !Array.isArray(category.items)) return [];
@@ -2709,13 +2135,11 @@
             }
             return unique;
         }
-
         function getChecklistCategoryLimit() {
             const raw = parseInt(limitSelect && limitSelect.value ? limitSelect.value : '10', 10);
             if (!Number.isFinite(raw) || raw <= 0) return 10;
             return Math.max(10, raw);
         }
-
         function buildSalesBaseSection(roleKey) {
             return {
                 kind: 'base',
@@ -2725,12 +2149,10 @@
                 required: SALES_BASE_ITEMS.length,
                 items: SALES_BASE_ITEMS.map(([id, title, hint], index) => ({
                     id: `${roleKey}_base_${index + 1}_${id}`,
-                    title,
-                    hint
+                    title, hint
                 }))
             };
         }
-
         function buildCategorySection(roleKey, categoryName, sectionIndex, itemLimit) {
             const items = uniqueCategoryItems(categoryName, itemLimit).map((item, itemIndex) => ({
                 id: `${roleKey}_cat_${sectionIndex + 1}_${itemIndex + 1}_${toIdPart(item.name)}`,
@@ -2747,7 +2169,6 @@
                 items
             };
         }
-
         function getRoleChecklist(roleKey) {
             const categoryLimit = getChecklistCategoryLimit();
             const roleCategories = ROLE_CHECKLIST_CATEGORIES[roleKey] || (ROLE_CONFIG[roleKey] && ROLE_CONFIG[roleKey].categories) || [];
@@ -2756,7 +2177,6 @@
                 .filter(section => section.items.length > 0);
             return [buildSalesBaseSection(roleKey), ...categorySections];
         }
-
         function getRoleChecklistStats(roleKey) {
             const sections = getRoleChecklist(roleKey);
             const sectionStats = sections.map(section => {
@@ -2778,7 +2198,6 @@
             const weakCategories = categorySections.filter(section => !section.passed);
             return { roleKey, sectionStats, total, done, percent, base, categorySections, categoryCoverageCount, categoryCoveragePercent, weakCategories };
         }
-
         function getChecklistSummaryText(roleKey, stats) {
             const role = ROLE_CONFIG[roleKey] || ROLE_CONFIG.seller;
             if (!stats.total) return `Для роли «${role.title}» пока нет пунктов проверки.`;
@@ -2788,9 +2207,7 @@
             if (stats.percent >= 65) return `По роли «${role.title}» уже есть рабочая основа, но часть категорий и связок ещё не закрыта до стандарта.`;
             return `По роли «${role.title}» нужен повтор базовой продажи и точечная тренировка аксессуаров по категориям.`;
         }
-
         const checklistStorageKey = 'employeeChecklistAnswers';
-
         function getChecklistState() {
             try {
                 const raw = JSON.parse(localStorage.getItem(checklistStorageKey) || '{}');
@@ -2798,29 +2215,23 @@
             } catch (e) { return {}; }
         }
         let checklistState = getChecklistState();
-
         function saveChecklistState() {
             localStorage.setItem(checklistStorageKey, JSON.stringify(checklistState));
         }
-
         function setChecklistAnswer(roleKey, itemId, checked) {
             if (!checklistState[roleKey] || typeof checklistState[roleKey] !== 'object') checklistState[roleKey] = {};
             checklistState[roleKey][itemId] = !!checked;
             saveChecklistState();
         }
-
         function getChecklistAnswer(roleKey, itemId) {
             return !!(checklistState[roleKey] && checklistState[roleKey][itemId]);
         }
-
         let checklistOpenSections = new Set();
-
         function renderChecklist() {
             const checklistSections = document.getElementById('checklistSections');
             if (!checklistSections) return;
             const role = ROLE_CONFIG[selectedRole] || ROLE_CONFIG.seller;
             const stats = getRoleChecklistStats(selectedRole);
-
             const allIds = new Set(stats.sectionStats.map(section => section.id));
             checklistOpenSections = new Set([...checklistOpenSections].filter(id => allIds.has(id)));
 
@@ -2831,7 +2242,6 @@
                 const categories = role.categories || Object.keys(accessoriesDB);
                 chipsContainer.innerHTML = categories.slice(0, 10).map(name => `<span class="role-chip">${name}</span>`).join('');
             }
-
             document.getElementById('checklistProgressBar').style.width = `${stats.percent}%`;
             document.getElementById('checklistProgressCount').textContent = `${stats.done} / ${stats.total}`;
             document.getElementById('checklistProgressPercent').textContent = `${stats.percent}%`;
@@ -2839,7 +2249,6 @@
             document.getElementById('analyticsCategoryCoverage').textContent = `${stats.categoryCoverageCount} / ${stats.categorySections.length}`;
             document.getElementById('analyticsScore').textContent = `${stats.percent}%`;
             document.getElementById('analyticsSummary').textContent = getChecklistSummaryText(selectedRole, stats);
-
             const analyticsDetails = document.getElementById('analyticsDetails');
             if (analyticsDetails) {
                 if (stats.base.percent < 100 && stats.base.missingItems.length) {
@@ -2849,7 +2258,6 @@
                     analyticsDetails.innerHTML = `<div class="analytics-list-item">База продаж освоена полностью.</div>`;
                 }
             }
-
             checklistSections.innerHTML = stats.sectionStats.map(section => `
             <details class="checklist-section" data-section-id="${section.id}" ${checklistOpenSections.has(section.id) ? 'open' : ''}>
               <summary class="checklist-section-head">
@@ -2878,7 +2286,7 @@
         }
 
         // ================================================================
-        // 6. ГЕНЕРАЦИЯ СКРИПТА ДЛЯ МОДАЛКИ
+        // 6. ГЕНЕРАЦИЯ СКРИПТА
         // ================================================================
         function generateScript(itemName, category, type) {
             const normalizedCategory = category.trim().toUpperCase();
@@ -2905,7 +2313,7 @@
         }
 
         // ================================================================
-        // 7. ОСНОВНАЯ ЛОГИКА РЕНДЕРИНГА
+        // 7. ОСНОВНАЯ ЛОГИКА
         // ================================================================
         const categoriesEl = document.getElementById('categories');
         const bundlesContainer = document.getElementById('bundlesContainer');
@@ -2927,14 +2335,12 @@
         if (!['catalog', 'bundles', 'checklist', 'calculator'].includes(currentAppView)) currentAppView = 'catalog';
 
         function normalize(v) { return String(v || '').toLowerCase().trim(); }
-
         function getActiveEntries() {
             const currentRole = ROLE_CONFIG[selectedRole] || ROLE_CONFIG.seller;
             if (selectedRole === 'seller') return Object.entries(accessoriesDB);
             const allowed = new Set(currentRole.categories || []);
             return Object.entries(accessoriesDB).filter(([catName]) => allowed.has(catName));
         }
-
         function populateCategorySelect(activeEntries) {
             if (!categorySelect) return;
             const prev = categorySelect.value;
@@ -2943,13 +2349,11 @@
             if (activeEntries.some(([name]) => name === prev)) categorySelect.value = prev;
             else categorySelect.value = 'all';
         }
-
         function getFilteredEntries(activeEntries) {
             populateCategorySelect(activeEntries);
             if (!categorySelect || categorySelect.value === 'all') return activeEntries;
             return activeEntries.filter(([catName]) => catName === categorySelect.value);
         }
-
         function sortItems(catName, items) {
             return items.slice().sort((a, b) => {
                 const scoreA = a.name.toLowerCase().includes('кабель') ? 10 : a.name.toLowerCase().includes('защит') ? 8 : 0;
@@ -2957,7 +2361,6 @@
                 return scoreB - scoreA || a.name.localeCompare(b.name, 'ru');
             });
         }
-
         function renderRoleControls(activeEntries) {
             const roleGrid = document.getElementById('roleGrid');
             roleGrid.innerHTML = Object.entries(ROLE_CONFIG).map(([key, role]) => `
@@ -2972,7 +2375,6 @@
             const chips = (currentRole.categories || activeEntries.map(([name]) => name)).slice(0, 8);
             document.getElementById('roleChips').innerHTML = chips.map(name => `<span class="role-chip">${name}</span>`).join('');
         }
-
         function renderCatalog() {
             const query = normalize(searchInput ? searchInput.value : '');
             const limitValue = limitSelect ? limitSelect.value : '8';
@@ -3016,19 +2418,16 @@
               </div>
             `;
                 const head = section.querySelector('.category-head');
-                head.addEventListener('click', function(e) {
-                    const catName = this.dataset.category;
-                    if (!catName) return;
-                    const isOpen = opened.has(catName);
-                    if (isOpen) opened.delete(catName);
-                    else opened.add(catName);
+                head.addEventListener('click', function() {
+                    const cn = this.dataset.category;
+                    if (!cn) return;
+                    const isOpen = opened.has(cn);
+                    if (isOpen) opened.delete(cn); else opened.add(cn);
                     section.classList.toggle('open');
-                    this.setAttribute('aria-expanded', String(!isOpen));
                 });
                 categoriesEl.appendChild(section);
             });
         }
-
         function renderBundles() {
             const activeEntries = getActiveEntries();
             const activeCategories = new Set(activeEntries.map(([name]) => name));
@@ -3044,7 +2443,6 @@
                     const icon = getIconForAccessory(name);
                     return `<div class="bundle-accessory"><span class="bundle-icon">${icon}</span> ${name}</div>`;
                 }).join('');
-
                 html += `
               <section class="category ${isOpen ? 'open' : ''}">
                 <button class="category-head" data-category="${catName}">
@@ -3072,22 +2470,18 @@
             `;
             }
             bundlesContainer.innerHTML = html || `<div class="empty">Нет бандлов для выбранной роли.</div>`;
-
             bundlesContainer.querySelectorAll('.category-head').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    const catName = this.dataset.category;
-                    if (!catName) return;
+                btn.addEventListener('click', function() {
+                    const cn = this.dataset.category;
+                    if (!cn) return;
                     const section = this.closest('.category');
                     if (!section) return;
-                    const isOpen = opened.has(catName);
-                    if (isOpen) opened.delete(catName);
-                    else opened.add(catName);
+                    const isOpen = opened.has(cn);
+                    if (isOpen) opened.delete(cn); else opened.add(cn);
                     section.classList.toggle('open');
-                    this.setAttribute('aria-expanded', String(!isOpen));
                 });
             });
         }
-
         function renderDeepAnalysis() {
             const container = document.getElementById('deepAnalysisBlocks');
             const summary = document.getElementById('deepSummary');
@@ -3095,12 +2489,11 @@
 
             const stats = getRoleChecklistStats(selectedRole);
             const categorySections = stats.categorySections;
-
             const basePercent = stats.base.percent;
             let baseColor, baseZone, baseText;
             if (basePercent < 30) { baseColor = 'red'; baseZone = '🔴 0–30% — критический уровень'; baseText = 'Слабая консультация по базе продаж. Требуется полное переобучение основам.'; }
             else if (basePercent < 60) { baseColor = 'orange'; baseZone = '🟠 30–60% — низкий уровень'; baseText = 'Есть базовые навыки, но требуется донастройка и тренировка ключевых этапов.'; }
-            else if (basePercent < 90) { baseColor = 'yellow'; baseZone = '🟡 60–90% — средний уровень'; baseText = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; }
+            else if (basePercent < 90) { baseColor = 'yellow'; baseZone = '🟡 60–90% — средний уровень'; baseText = 'Хороший уровень, но есть мелкие недочёты.'; }
             else { baseColor = 'green'; baseZone = '🟢 90–100% — высокий уровень'; baseText = 'Отличный результат! Продолжайте в том же духе.'; }
 
             let html = '';
@@ -3114,7 +2507,6 @@
                 { name: 'КБТ', icon: '🏠', keywords: ['СТИРАЛЬНАЯ МАШИНА', 'ХОЛОДИЛЬНИК'] },
                 { name: 'МБТ', icon: '🍳', keywords: ['УТЮГ', 'МИКРОВОЛНОВКА'] }
             ];
-
             const activeGroups = groups.map(group => {
                 const relevant = categorySections.filter(s => group.keywords.includes(s.categoryName));
                 const avg = relevant.length ? Math.round(relevant.reduce((sum, s) => sum + s.percent, 0) / relevant.length) : null;
@@ -3127,51 +2519,42 @@
                 summary.textContent = 'Заполните чек-лист, чтобы увидеть анализ.';
                 return;
             }
-
             for (const group of activeGroups) {
                 const p = group.percent;
                 let color, zone, text;
-                if (p < 30) { color = 'red'; zone = '🔴 0–30% — критический уровень'; text = 'Слабая консультация по данной группе. Требуется полное переобучение.'; }
-                else if (p < 60) { color = 'orange'; zone = '🟠 30–60% — низкий уровень'; text = 'Есть базовые знания, но требуется донастройка и тренировка.'; }
-                else if (p < 90) { color = 'yellow'; zone = '🟡 60–90% — средний уровень'; text = 'Хороший уровень, но есть мелкие недочёты. Рекомендуется закрепить навыки.'; }
-                else { color = 'green'; zone = '🟢 90–100% — высокий уровень'; text = 'Отличный результат! Продолжайте в том же духе.'; }
-
+                if (p < 30) { color = 'red'; zone = '🔴 0–30%'; text = 'Слабая консультация по данной группе.'; }
+                else if (p < 60) { color = 'orange'; zone = '🟠 30–60%'; text = 'Есть базовые знания, но требуется донастройка.'; }
+                else if (p < 90) { color = 'yellow'; zone = '🟡 60–90%'; text = 'Хороший уровень, но есть мелкие недочёты.'; }
+                else { color = 'green'; zone = '🟢 90–100%'; text = 'Отличный результат!'; }
                 const weak = group.sections.filter(s => s.percent < 100).map(s => s.categoryName);
                 let repeatHtml = '';
                 if (weak.length > 0) {
                     const chips = weak.map(cat => `<span class="role-chip">${cat}</span>`).join(' ');
                     repeatHtml = `<div style="margin-top:4px; font-weight:600;">Повторить — ${chips}</div>`;
                 }
-
                 html += `<div class="analysis-block ${color}">
                             <div class="block-head"><span>${group.icon} ${group.name}</span><span class="zone">${p}% · ${zone}</span></div>
                             <div class="block-desc">${text}</div>
                             ${repeatHtml}
                         </div>`;
             }
-
             container.innerHTML = html;
-
             const overall = Math.round(activeGroups.reduce((sum, g) => sum + g.percent, 0) / activeGroups.length);
-            let finalMsg = '';
-            if (overall < 30) finalMsg = 'Критический уровень. Нужно срочно менять подход во всех группах.';
-            else if (overall < 60) finalMsg = 'Средний уровень. Требуется донастройка по отдельным группам.';
-            else if (overall < 90) finalMsg = 'Хороший уровень. Закрепляй успех и масштабируй.';
-            else finalMsg = 'Отличный результат! Продолжай в том же духе и делись опытом с коллегами.';
-            summary.textContent = `📊 Общий уровень по группам: ${overall}% · ${finalMsg}`;
+            summary.textContent = `📊 Общий уровень по группам: ${overall}%`;
         }
 
         // ================================================================
         // 8. КАЛЬКУЛЯТОР АТТАЧ
         // ================================================================
-        const CALC_STORAGE_KEY = 'attachCalcState_v8';
+        const CALC_STORAGE_KEY = 'attachCalcState_v11';
         const calcState = {
             devices: 0,
             accessories: 0,
             activeField: 'devices',
-            inputBuffer: ''
+            inputBuffer: '',
+            revealed: false
         };
-        const calcOpenCards = new Set();
+        let calcCardData = {};
 
         function calcLoadState() {
             try {
@@ -3180,6 +2563,7 @@
                     calcState.devices = parseInt(raw.devices, 10) || 0;
                     calcState.accessories = parseInt(raw.accessories, 10) || 0;
                     calcState.activeField = raw.activeField === 'accessories' ? 'accessories' : 'devices';
+                    calcState.revealed = !!raw.revealed;
                 }
             } catch (e) {}
         }
@@ -3188,14 +2572,13 @@
                 localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify({
                     devices: calcState.devices,
                     accessories: calcState.accessories,
-                    activeField: calcState.activeField
+                    activeField: calcState.activeField,
+                    revealed: calcState.revealed
                 }));
             } catch (e) {}
         }
         function calcGetDisplayValue(field) {
-            if (calcState.activeField === field && calcState.inputBuffer !== '') {
-                return calcState.inputBuffer;
-            }
+            if (calcState.activeField === field && calcState.inputBuffer !== '') return calcState.inputBuffer;
             return String(field === 'devices' ? calcState.devices : calcState.accessories);
         }
         function calcCommitInput() {
@@ -3212,27 +2595,27 @@
             const attachEl = document.getElementById('calcAttachResult');
             const attachBox = document.getElementById('calcResultBox');
             if (!dEl || !aEl || !attachEl) return;
+
             dEl.textContent = calcGetDisplayValue('devices');
             aEl.textContent = calcGetDisplayValue('accessories');
             document.querySelectorAll('.calc-field').forEach(el => {
                 el.classList.toggle('active', el.dataset.calcField === calcState.activeField);
             });
+
             const d = calcState.devices;
             const a = calcState.accessories;
-            if (d > 0) {
+            if (calcState.revealed && d > 0) {
                 const percent = Math.round(a / d * 100);
                 attachEl.textContent = percent + '%';
                 attachBox.classList.remove('positive', 'negative');
                 attachBox.classList.add(percent >= 100 ? 'positive' : 'negative');
             } else {
-                attachEl.textContent = '—';
+                attachEl.textContent = '???';
                 attachBox.classList.remove('positive', 'negative');
             }
             renderCalcAnalysis();
         }
-        function fmtPercent(v) {
-            return (Math.round(v * 10) / 10).toFixed(1).replace(/\.0$/, '') + '%';
-        }
+        function fmtPercent(v) { return (Math.round(v * 10) / 10).toFixed(1).replace(/\.0$/, '') + '%'; }
         function pluralDevices(n) {
             const mod10 = n % 10, mod100 = n % 100;
             if (mod10 === 1 && mod100 !== 11) return 'устройство';
@@ -3250,7 +2633,7 @@
             const n = Math.ceil((T * d - a) / (K - T));
             return Math.max(0, n);
         }
-        function planResult(K, n, d, a) {
+        function planResult(T_unused, K, n, d, a) {
             const newA = a + n * K;
             const newD = d + n;
             if (newD === 0) return 0;
@@ -3262,26 +2645,21 @@
                 if (K <= T) continue;
                 const n = planN(T, K, d, a);
                 if (n === null || n <= 0) continue;
-                const result = planResult(K, n, d, a);
+                const result = planResult(T, K, n, d, a);
                 rows.push({ K, n, result });
             }
             return rows;
         }
-        function buildCalcCard(id, cls, title, value, hint, detailsHtml) {
-            const hasDetails = !!detailsHtml;
-            return `<div class="calc-card ${cls}${hasDetails ? ' has-details' : ''}" data-card-id="${id}" role="${hasDetails ? 'button' : 'group'}" tabindex="${hasDetails ? '0' : '-1'}">
-                <div class="calc-card-header">
-                  <div class="calc-card-title">${title}</div>
-                  <div class="calc-card-value">${value}</div>
-                  <div class="calc-card-hint">${hint}</div>
-                  ${hasDetails ? '<div class="calc-card-chevron" aria-hidden="true">▾</div>' : ''}
-                </div>
-                ${hasDetails ? `<div class="calc-card-details">${detailsHtml}</div>` : ''}
-              </div>`;
-        }
+
         function renderCalcAnalysis() {
             const container = document.getElementById('calcAnalysis');
             if (!container) return;
+
+            if (!calcState.revealed) {
+                container.innerHTML = '';
+                calcCardData = {};
+                return;
+            }
             const d = calcState.devices;
             const a = calcState.accessories;
             if (d === 0) {
@@ -3289,13 +2667,16 @@
                     Введи количество проданных <b>устройств</b> и <b>аксессуаров</b>,<br>
                     чтобы увидеть расчёт АТТАЧ и план компенсации.
                   </div>`;
+                calcCardData = {};
                 return;
             }
+
             const percent = a / d * 100;
             const surplus = a - d;
             let cards = '';
+            calcCardData = {};
 
-            // 1. Текущий АТТАЧ
+            // Карточка 1
             let statusClass, statusHint;
             if (percent >= 100) { statusClass = 'success'; statusHint = `Отлично! Ты выше цели на ${Math.round(percent - 100)}%. Так держать.`; }
             else if (percent >= 80) { statusClass = 'warning'; statusHint = `Почти у цели. Осталось совсем немного.`; }
@@ -3310,10 +2691,11 @@
             else if (diff < 0) detail1 += `<div class="calc-plan"><span class="calc-plan-label">Отставание от цели</span><span class="calc-plan-value">${diff} ${pluralAccessories(-diff)}</span></div>`;
             else detail1 += `<div class="calc-plan"><span class="calc-plan-label">Ровно на цели</span><span class="calc-plan-value">100%</span></div>`;
             detail1 += `</div>`;
-            detail1 += `<div class="calc-detail-note">${percent >= 100 ? 'Можно двигаться к премиальным 120% — раскрой карточку ниже.' : 'Раскрой карточки ниже, чтобы увидеть план выхода на 100% и 120%.'}</div>`;
-            cards += buildCalcCard('attach', statusClass, 'Текущий АТТАЧ', Math.round(percent) + '%', statusHint, detail1);
+            detail1 += `<div class="calc-detail-note">${percent >= 100 ? 'Можно двигаться к премиальным 120%.' : 'Раскрой карточки ниже, чтобы увидеть план выхода на 100% и 120%.'}</div>`;
 
-            // 2. Запас «голых» продаж
+            calcCardData['attach'] = { title: 'Текущий АТТАЧ', hint: statusHint, cls: statusClass, details: detail1 };
+
+            // Карточка 2
             let surplusClass, surplusValue, surplusHint, detail2 = '';
             if (surplus > 0) {
                 surplusClass = 'success';
@@ -3329,7 +2711,8 @@
                     const label = n === surplus ? `После ${n} ${pluralDevices(n)} — граница` : `После ${n} ${pluralDevices(n)}`;
                     detail2 += `<div class="calc-plan${isBoundary ? ' is-main' : ''}"><span class="calc-plan-label">${label}</span><span class="calc-plan-value">${fmtPercent(newP)}<span class="calc-plan-sub">${a} / ${newD}</span></span></div>`;
                 });
-                detail2 += `</div><div class="calc-detail-note">Как только продашь ${surplus + 1} ${pluralDevices(surplus + 1)} без аксессуаров — АТТАЧ упадёт ниже 100%.</div>`;
+                detail2 += `</div>`;
+                detail2 += `<div class="calc-detail-note">Как только продашь ${surplus + 1} ${pluralDevices(surplus + 1)} без аксессуаров — АТТАЧ упадёт ниже 100%.</div>`;
             } else if (surplus === 0) {
                 surplusClass = 'warning';
                 surplusValue = 0;
@@ -3339,51 +2722,54 @@
                 detail2 = `<div class="calc-details-title">Прогноз</div><div class="calc-plans">`;
                 detail2 += `<div class="calc-plan"><span class="calc-plan-label">Сейчас</span><span class="calc-plan-value">${fmtPercent(percent)}<span class="calc-plan-sub">${a} / ${d}</span></span></div>`;
                 detail2 += `<div class="calc-plan is-main"><span class="calc-plan-label">После 1 «голой» продажи</span><span class="calc-plan-value">${fmtPercent(newP)}<span class="calc-plan-sub">${a} / ${newD}</span></span></div>`;
-                detail2 += `</div><div class="calc-detail-note">Чтобы появился запас, продавай аксессуаров больше, чем устройств.</div>`;
+                detail2 += `</div>`;
+                detail2 += `<div class="calc-detail-note">Чтобы появился запас, продавай аксессуаров больше, чем устройств.</div>`;
             } else {
                 surplusClass = 'danger';
                 surplusValue = 0;
-                surplusHint = `Запаса нет — аксессуаров меньше, чем устройств на ${-surplus}. Сначала подтяни АТТАЧ, иначе каждая «голая» продажа только ухудшит картину.`;
+                surplusHint = `Запаса нет — аксессуаров меньше, чем устройств на ${-surplus}. Сначала подтяни АТТАЧ.`;
                 detail2 = `<div class="calc-details-title">Отставание</div><div class="calc-plans">`;
                 detail2 += `<div class="calc-plan is-main"><span class="calc-plan-label">Не хватает аксов</span><span class="calc-plan-value">${-surplus} ${pluralAccessories(-surplus)}</span></div>`;
                 detail2 += `<div class="calc-plan"><span class="calc-plan-label">Текущий АТТАЧ</span><span class="calc-plan-value">${fmtPercent(percent)}</span></div>`;
-                detail2 += `</div><div class="calc-detail-note">Смотри карточки «До 100%» и «До 120%» — там конкретные планы.</div>`;
+                detail2 += `</div>`;
+                detail2 += `<div class="calc-detail-note">Смотри карточки «До 100%» и «До 120%» — там конкретные планы.</div>`;
             }
-            cards += buildCalcCard('surplus', surplusClass, 'Запас «голых» продаж', surplusValue, surplusHint, detail2);
+            calcCardData['surplus'] = { title: 'Запас «голых» продаж', hint: surplusHint, cls: surplusClass, details: detail2 };
 
-            // 3. До 100%
+            // Карточка 3
             const rows100 = buildPlanRows(1, d, a);
             const n100_2 = planN(1, 2, d, a);
             let c3Class = (n100_2 === 0) ? 'success' : 'info';
             let c3Value = (n100_2 === 0) ? 'Достигнуто' : `${n100_2} ${pluralDevices(n100_2)}`;
-            let c3Hint = (n100_2 === 0)
-                ? 'Ты уже на 100% или выше. Продолжай в том же духе.'
-                : `Продай ${n100_2} ${pluralDevices(n100_2)}, каждое с 2 аксессуарами — и АТТАЧ выйдет на 100%.`;
+            let c3Hint = (n100_2 === 0) ? 'Ты уже на 100% или выше.' : `Продай ${n100_2} ${pluralDevices(n100_2)}, каждое с 2 аксессуарами — и АТТАЧ выйдет на 100%.`;
+
             let detail3 = `<div class="calc-details-title">Альтернативные сценарии</div><div class="calc-plans">`;
             if (rows100.length === 0) {
                 detail3 += `<div class="calc-plan"><span class="calc-plan-label">—</span><span class="calc-plan-value">Цель уже достигнута</span></div>`;
             } else {
-                rows100.forEach(row => {
+                rows100.forEach((row) => {
                     const isMain = row.K === 2;
                     const extraAccs = row.n * row.K;
                     detail3 += `<div class="calc-plan${isMain ? ' is-main' : ''}"><span class="calc-plan-label">По ${row.K} ${pluralAccessories(row.K)}</span><span class="calc-plan-value">${row.n} ${pluralDevices(row.n)}<span class="calc-plan-sub">+${extraAccs} ${pluralAccessories(extraAccs)} · итог ${fmtPercent(row.result)}</span></span></div>`;
                 });
             }
-            detail3 += `</div><div class="calc-detail-note">Чем больше аксов на устройство, тем меньше устройств нужно продать. Но и продавать сложнее — выбирай реалистичный темп.</div>`;
-            cards += buildCalcCard('to100', c3Class, 'До 100% — 2 акса на устройство', c3Value, c3Hint, detail3);
+            detail3 += `</div>`;
+            detail3 += `<div class="calc-detail-note">Чем больше аксов на устройство, тем меньше устройств нужно продать.</div>`;
 
-            // 4. До 120%
+            calcCardData['to100'] = { title: 'До 100% — 2 акса на устройство', hint: c3Hint, cls: c3Class, value: c3Value, details: detail3 };
+
+            // Карточка 4
             const rows120 = buildPlanRows(1.2, d, a);
             const n120_2 = planN(1.2, 2, d, a);
             let c4Class, c4Value, c4Hint;
             if (n120_2 === 0 || n120_2 === null) {
                 c4Class = 'success';
                 c4Value = 'Достигнуто';
-                c4Hint = 'Премиальный уровень взят! Держи планку.';
+                c4Hint = 'Премиальный уровень взят!';
             } else {
                 c4Class = 'info';
                 c4Value = `${n120_2} ${pluralDevices(n120_2)}`;
-                c4Hint = `Продай ${n120_2} ${pluralDevices(n120_2)}, каждое с 2 аксессуарами — и АТТАЧ выйдет на премиальные 120%.`;
+                c4Hint = `Продай ${n120_2} ${pluralDevices(n120_2)}, каждое с 2 аксессуарами — и АТТАЧ выйдет на 120%.`;
             }
             let detail4 = `<div class="calc-details-title">Альтернативные сценарии</div><div class="calc-plans">`;
             if (rows120.length === 0) {
@@ -3395,19 +2781,40 @@
                     detail4 += `<div class="calc-plan${isMain ? ' is-main' : ''}"><span class="calc-plan-label">По ${row.K} ${pluralAccessories(row.K)}</span><span class="calc-plan-value">${row.n} ${pluralDevices(row.n)}<span class="calc-plan-sub">+${extraAccs} ${pluralAccessories(extraAccs)} · итог ${fmtPercent(row.result)}</span></span></div>`;
                 });
             }
-            detail4 += `</div><div class="calc-detail-note">120% — премиальный уровень. Начни с плана «по 2 акса» — он реалистичнее, чем попытка продать сразу много аксов.</div>`;
-            cards += buildCalcCard('to120', c4Class, 'До 120% — 2 акса на устройство', c4Value, c4Hint, detail4);
+            detail4 += `</div>`;
+            detail4 += `<div class="calc-detail-note">120% — премиальный уровень. Начни с плана «по 2 акса».</div>`;
 
+            calcCardData['to120'] = { title: 'До 120% — 2 акса на устройство', hint: c4Hint, cls: c4Class, value: c4Value, details: detail4 };
+
+            // Рендер
+            cards += buildCalcCard('attach', statusClass, 'Текущий АТТАЧ', Math.round(percent) + '%', statusHint);
+            cards += buildCalcCard('surplus', surplusClass, 'Запас «голых» продаж', surplusValue, surplusHint);
+            cards += buildCalcCard('to100', c3Class, 'До 100% — 2 акса на устройство', c3Value, c3Hint);
+            cards += buildCalcCard('to120', c4Class, 'До 120% — 2 акса на устройство', c4Value, c4Hint);
             container.innerHTML = cards;
-            container.querySelectorAll('.calc-card').forEach(card => {
-                if (calcOpenCards.has(card.dataset.cardId)) card.classList.add('open');
-            });
         }
+
+        function buildCalcCard(id, cls, title, value, hint) {
+            return `<div class="calc-card ${cls}" data-card-id="${id}" role="button" tabindex="0" aria-label="${title}">
+              <div class="calc-card-header">
+                <div class="calc-card-text">
+                  <div class="calc-card-title">${title}</div>
+                  <div class="calc-card-hint">${hint}</div>
+                </div>
+                <div class="calc-card-right">
+                  <div class="calc-card-value">${value}</div>
+                  <div class="calc-card-chevron" aria-hidden="true">›</div>
+                </div>
+              </div>
+            </div>`;
+        }
+
         function calcHandleKey(key) {
             if (/^\d$/.test(key)) {
                 if (calcState.inputBuffer === '0') calcState.inputBuffer = '';
                 calcState.inputBuffer += key;
                 if (calcState.inputBuffer.length > 6) calcState.inputBuffer = calcState.inputBuffer.slice(0, 6);
+                calcState.revealed = false;
                 calcUpdateDisplay();
                 return;
             }
@@ -3423,56 +2830,83 @@
                     } else {
                         calcState.inputBuffer = calcState.inputBuffer.slice(0, -1);
                     }
+                    calcState.revealed = false;
                     break;
                 }
                 case 'clear': {
                     if (calcState.activeField === 'devices') calcState.devices = 0;
                     else calcState.accessories = 0;
                     calcState.inputBuffer = '';
+                    calcState.revealed = false;
                     calcSaveState();
                     break;
                 }
-                case 'reset':
-                    calcState.devices = 0;
-                    calcState.accessories = 0;
-                    calcState.inputBuffer = '';
-                    calcState.activeField = 'devices';
-                    calcOpenCards.clear();
-                    calcSaveState();
-                    break;
                 case 'swap': {
                     calcCommitInput();
                     const tmp = calcState.devices;
                     calcState.devices = calcState.accessories;
                     calcState.accessories = tmp;
+                    calcState.revealed = false;
                     calcSaveState();
                     break;
                 }
                 case 'calc':
                     calcCommitInput();
+                    calcState.revealed = true;
+                    calcSaveState();
                     break;
             }
             calcUpdateDisplay();
         }
+
+        const calcModalOverlay = document.getElementById('calcDetailModal');
+        const calcModalTitleEl = document.getElementById('calcModalTitle');
+        const calcModalHintEl = document.getElementById('calcModalHint');
+        const calcModalBodyEl = document.getElementById('calcModalBody');
+        const calcModalCloseBtn = document.getElementById('calcModalCloseBtn');
+
+        function openCalcModal(id) {
+            const data = calcCardData[id];
+            if (!data) return;
+            calcModalTitleEl.textContent = data.title;
+            calcModalTitleEl.className = 'modal-title ' + (data.cls || '');
+            calcModalHintEl.textContent = data.hint || '';
+            calcModalBodyEl.innerHTML = data.details || '';
+            calcModalBodyEl.className = 'modal-body ' + (data.cls || '');
+            calcModalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCalcModal() {
+            calcModalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+        calcModalCloseBtn.addEventListener('click', closeCalcModal);
+        calcModalOverlay.addEventListener('click', (e) => {
+            if (e.target === calcModalOverlay) closeCalcModal();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeCalcModal();
+        });
+
         function calcInitAnalysisEvents() {
             const container = document.getElementById('calcAnalysis');
             if (!container) return;
             container.addEventListener('click', (e) => {
-                const card = e.target.closest('.calc-card.has-details');
+                const card = e.target.closest('.calc-card');
                 if (!card) return;
                 const id = card.dataset.cardId;
-                if (!id) return;
-                if (card.classList.toggle('open')) calcOpenCards.add(id);
-                else calcOpenCards.delete(id);
+                if (id) openCalcModal(id);
             });
             container.addEventListener('keydown', (e) => {
                 if (e.key !== 'Enter' && e.key !== ' ') return;
-                const card = e.target.closest('.calc-card.has-details');
+                const card = e.target.closest('.calc-card');
                 if (!card) return;
                 e.preventDefault();
-                card.click();
+                const id = card.dataset.cardId;
+                if (id) openCalcModal(id);
             });
         }
+
         function calcInit() {
             const keypad = document.querySelector('.calc-keypad');
             if (!keypad) return;
@@ -3486,6 +2920,7 @@
                 field.addEventListener('click', () => {
                     calcCommitInput();
                     calcState.activeField = field.dataset.calcField;
+                    calcState.revealed = false;
                     calcSaveState();
                     calcUpdateDisplay();
                 });
@@ -3495,7 +2930,7 @@
         }
 
         // ================================================================
-        // 9. ОСНОВНАЯ ФУНКЦИЯ РЕНДЕРИНГА
+        // 9. ОСНОВНОЙ РЕНДЕР
         // ================================================================
         function render() {
             renderRoleControls(getActiveEntries());
@@ -3532,7 +2967,7 @@
         }
 
         // ================================================================
-        // 10. МОДАЛЬНОЕ ОКНО
+        // 10. МОДАЛКА СКРИПТОВ
         // ================================================================
         const modalOverlay = document.getElementById('scriptModal');
         const modalTitle = document.getElementById('modalTitle');
@@ -3553,18 +2988,13 @@
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) hideScriptModal();
         });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') hideScriptModal();
-        });
 
         categoriesEl.addEventListener('click', (e) => {
             const itemEl = e.target.closest('.item');
             if (!itemEl) return;
             const category = itemEl.dataset.category;
             const itemName = itemEl.dataset.itemName;
-            if (category && itemName) {
-                showScriptModal(itemName, category, '');
-            }
+            if (category && itemName) showScriptModal(itemName, category, '');
         });
 
         // ================================================================
@@ -3594,9 +3024,7 @@
 
         function handleChecklistExpandAll() {
             const ids = new Set();
-            document.querySelectorAll('.checklist-section[data-section-id]').forEach(el => {
-                ids.add(el.dataset.sectionId);
-            });
+            document.querySelectorAll('.checklist-section[data-section-id]').forEach(el => ids.add(el.dataset.sectionId));
             checklistOpenSections = ids;
             renderChecklist();
             renderDeepAnalysis();
@@ -3618,14 +3046,12 @@
             opened = new Set();
             render();
         });
-
         clearBtn.addEventListener('click', () => {
             searchInput.value = '';
             categorySelect.value = 'all';
             limitSelect.value = 'all';
             render();
         });
-
         searchInput.addEventListener('input', render);
         categorySelect.addEventListener('change', render);
         limitSelect.addEventListener('change', render);
@@ -3667,10 +3093,9 @@
         });
 
         // ================================================================
-        // 12. УПРАВЛЕНИЕ ПАНЕЛЯМИ
+        // 12. ПАНЕЛИ
         // ================================================================
         const PANEL_STATE_KEY = 'panelCollapsedStates';
-
         function getPanelStates() {
             try {
                 const raw = localStorage.getItem(PANEL_STATE_KEY);
